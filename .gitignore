@@ -1,1 +1,6 @@
 .env
+databases/
+__pycache__/
+*.pyc
+*.pyo
+.vscode/
