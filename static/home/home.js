@@ -38,7 +38,6 @@ const material = new THREE.ShaderMaterial({
     uniforms: {
         u_time: { value: 0.0 },
         u_resolution: { value: new THREE.Vector2(window.innerWidth * canvas_w, window.innerHeight) },
-        u_dtime: { value: Date.now() / 1000. - start_time},
         u_xtime: { value: 1.}
     },
     fragmentShader: `
@@ -48,7 +47,6 @@ const material = new THREE.ShaderMaterial({
 
         uniform vec2 u_resolution;
         uniform float u_time;
-        uniform float u_dtime;
         uniform float u_xtime;
 
         #define PI 3.14159265359
@@ -84,7 +82,7 @@ const material = new THREE.ShaderMaterial({
         }
 
         void main() {
-            float time = (u_time + u_dtime) * 0.1 * u_xtime;
+            float time = u_time * 0.1 * u_xtime;
             vec2 uv = 1.5 * (gl_FragCoord.xy - 0.5 * u_resolution.xy) / u_resolution.y;
 
             // Transformación horizontal en lugar de radial
@@ -136,16 +134,38 @@ addEventListener('resize', () => {
 // -------------------------
 
 const dialog = document.querySelector("dialog.log-out");
-material.uniforms.u_xtime.value = dialog.open ? 0.3 : 1.0
-
 const close_modal_button = document.querySelector("dialog.log-out button#close-modal");
 close_modal_button.addEventListener("click", () => {
+    material.uniforms.u_xtime.value = 1.;
+    material.uniforms.u_time.value = Date.now() / 1000. - start_time;
+
     dialog.close();
 });
 
 const open_modal_button = document.querySelector("div.side-bar div#log-out");
 open_modal_button.addEventListener("click", () => {
+    material.uniforms.u_xtime.value = .3;
+    material.uniforms.u_time.value = Date.now() / 1000. - start_time;
+
     dialog.showModal();
+});
+
+// -------------------------
+//           NEWS
+// -------------------------
+
+const news_div = document.querySelector("div.side-bar div#news");
+news_div.addEventListener("click", () => {
+    window.location.href = "/home/news";
+});
+
+// -------------------------
+//           PLAY
+// -------------------------
+
+const play_div = document.querySelector("div.side-bar div#play");
+play_div.addEventListener("click", () => {
+    window.location.href = "/home/games";
 });
 
 // -------------------------
@@ -155,4 +175,13 @@ open_modal_button.addEventListener("click", () => {
 const firends_div = document.querySelector("div.side-bar div#friends");
 firends_div.addEventListener("click", () => {
     window.location.href = "/home/friends";
+});
+
+// -------------------------
+//          GITHUB
+// -------------------------
+
+const github_div = document.querySelector("div.side-bar div#github");
+github_div.addEventListener("click", () => {
+    window.open("https://github.com/FelipeButhay/Niche-Games");
 });

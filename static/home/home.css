@@ -1,46 +1,233 @@
-/* === MAIN === */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;800&display=swap');
 
-.main {
-    position: absolute;
-    left: 20vw;
+* {
+    box-sizing: border-box;
+    font-family: "Cormorant Garamond";
+    font-weight: 700;
+    color: #fff;
+    user-select: none;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+/* === SHADER === */
+canvas {
+    position: fixed;
+    z-index: -100;
     top: 0;
-    width: calc(80vw);
-    height: 100vh;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    transform: scaleX(-1);
+}
+
+/* === BARRA LATERAL === */
+.side-bar {
+    position: fixed;
+    height: 100%;
+    width: 20vw;
+    min-width: 220px;
+    backdrop-filter: blur(3px) brightness(0.5);
+    border-right: 1px solid rgb(90, 90, 90);
+
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    padding-left: 3vw;
+    gap: 1.5vh;
+}
+
+/* === LINKS === */
+.link {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+    padding: 1vh 1vw;
+    border-radius: 1vw;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 3.6vh;
+    width: 70%;
+
+    position: relative;
 
     color: white;
-    overflow-y: auto;
-    overflow-x: hidden;
+}
+
+.link:hover {
+    transform: translateX(2vh);
+    transition: all 0.3s ease;
+}
+
+/* Mantiene los íconos centrados incluso si los SVG internos usan viewBox distintos */
+.icon use {
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+/* Normalización general */
+.icon {
+    width: 3vh;
+    height: 3vh;
+    flex-shrink: 0;
+    vertical-align: middle;
+    display: inline-block;
+    transition: transform 0.3s ease, color 0.3s ease, filter 0.3s ease;
+    margin-right: 1vh;
+
+    position: relative;
+    overflow: visible;
+}
+
+.icon use {
+    stroke-width: 3.5;
+    stroke: white;
+    fill: none;
+    stroke-linecap: round;
+}
+
+.link:hover .icon use {
+    transform: scale(1.2);
+    stroke: url(#golden-gradient);    
+    stroke-width: 3.5;
 }
 
 
-/* === News === */
 
-div.news {
-    margin: 1.5vh 3vh ;
-    padding: 2vh 6vh;
+.link#github .icon use {
+    stroke: none;
+    fill: white
+}
 
-    backdrop-filter: blur(3px) brightness(0.5);
+.link#github:hover .icon use {
+    stroke: none;
+    fill: url(#golden-gradient);
+}
+
+/* === TEXTO DORADO ANIMADO === */
+.golden-text {
+    background: linear-gradient(
+        120deg,
+        #b8860b 0%,
+        #ffd700 25%,
+        #fff1a6 50%,
+        #ffd700 75%,
+        #b8860b 100%
+    );
+    animation: shine 6s ease-in-out infinite;
+    background-size: 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+@keyframes shine {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* === DIALOG === */
+
+dialog.log-out {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    height: 500px;
+    width: 500px;
+    background: rgba(0, 0, 0, 0.50);
     border: 1px solid rgb(90, 90, 90);
 
-    border-radius: 3vh;
+    border-radius: 10%;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    margin: 0;
+}
+
+dialog.log-out:focus {
+    outline: none;
+}
+
+dialog.log-out::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+}
+
+dialog h1, dialog h2, dialog h3 {
+    display: block;
     position: relative;
+    margin: 1vh;
 }
 
-div.news h1 {
-    font-size: 40px;
-    display: block;
+dialog h1 {
+    font-size: 8vh;
 }
 
-div.news p {
-    font-size: 20px;
+dialog h2 {
+    font-size: 5vh;
 }
 
-div.news span.date {
-    margin: 1vh 0;
-    font-size: 24px;
-    display: block;
-    text-align: right;
+dialog h3 {
+    margin-top: 4vh;
+    font-size: 3vh;
 }
 
+dialog button {
+    height: 5vh;
+    margin: 2vh 0;
+
+    font-size: 3vh;
+    border-radius: 3vh;
+    border: none;
+    position: relative;
+    transition: 300ms ease-in-out;
+    padding: 0 5vh;
+
+    background-color: white;
+    color: black;
+}
+
+dialog button:focus {
+    outline: none;
+}
+
+dialog button:hover {
+    background-color: rgba(255, 207, 34);
+}
+
+dialog:not([open]) {
+  display: none;
+}
+
+/* === SCROLL BAR ===*/
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(30, 30, 30, 0);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ffd700, #b8860b);
+  border-radius: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.4);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #fff1a6, #ffd700);
+}

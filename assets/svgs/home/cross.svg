@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">
+    <style>
+        path, circle {
+            stroke: currentColor;
+            fill-opacity: 0;
+            stroke-linecap: round;
+            stroke-width: 3.5;
+        }
+    </style>
+    <path d="M20 20 L -20 -20 M 20 -20 L -20 20"/>
+    <circle r="45">
+
+</svg>

@@ -1,0 +1,216 @@
+.main {
+    margin: 2vh;
+    position: absolute;
+    left: 20vw;
+    top: 0;
+    width: calc(80vw - 2*2vh);
+    height: calc(100vh - 2*2vh);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 3vh;
+    grid-row-gap: 3vh;
+
+    flex-direction: column;
+
+    color: white;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    overflow: hidden;
+}
+
+/* === GRID ===*/
+
+div.main div.container {
+    border-radius: 3vh; 
+    clip-path: inset(0 round 3vh);
+    padding: 2vh 4vh;
+
+    backdrop-filter: blur(0px) brightness(0.5);
+    border: 1px solid rgb(90, 90, 90);
+}
+
+div.friends {
+    grid-column-start: 1;
+    grid-column-end: 1;
+
+    grid-row-start: 1;
+    grid-row-end: 6;
+
+    overflow-y: scroll;
+}
+
+div.send {
+    grid-column-start: 2;
+    grid-column-end: 2;
+
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+
+div.requests {
+    grid-column-start: 2;
+    grid-column-end: 2;
+
+    grid-row-start: 3;
+    grid-row-end: 6;
+
+    overflow-y: scroll;
+}
+
+/* === GRID IN ===*/
+
+h1 {
+    font-size: 40px;
+}
+
+/* === FRIENDS ===*/
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    height: 7vh;
+    font-size: 2.5vh;
+
+    border-radius: 1vh;
+    margin: 1vh 0;
+
+    backdrop-filter: blur(3px);
+    background: rgba(0, 0, 0, .6);
+    border: 1px solid rgb(90, 90, 90);
+    position: relative;
+}
+
+div.friends li span {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 3vh;
+}
+
+div.friends li span.username {
+    left: 0;
+}
+
+div.friends li span.status {
+    right: 0;
+}
+
+/* === REQUEST ===*/
+
+div.send {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.type-selector {
+    height: 6dvb;
+    width: 40vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    position: relative;
+
+    cursor: pointer;
+
+    font-size: 2.5vh;
+
+    border: 1px solid rgb(90, 90, 90);
+}
+
+div.type-selector div.background {
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    left: 0;
+    background: rgba(0, 0, 0, 1);
+    border: 1px solid rgb(90, 90, 90);
+
+    transition: 500ms ease-in-out;
+    z-index: 0;
+}
+
+div.type-selector span {
+    flex: 1;
+    z-index: 1;
+    text-align: center;
+
+    transition: 500ms ease-in-out;
+}
+
+input[type="text"]{
+    color: black;
+    position: relative;
+
+    padding: 1vh 2vh;
+    height: 4.5vh;
+    width: 60vh;
+    margin-top: 2vh;
+    font-size: 2.4vh;
+    border-radius: 1vh;
+    border: none;
+}
+
+input[type="text"]:focus {
+    box-shadow: 0px 0px 15px 0px rgba(255, 207, 34, 1);
+    transition: 300ms ease;
+    border: none;
+    outline: none;
+}
+
+/* div.send button {
+    color: black;
+    display: block;
+    position: relative;
+
+    padding: 1vh 4vh;
+    height: 4.5vh;
+    margin-top: 2vh;
+    font-size: 2.4vh;
+    border-radius: 2.25vh;
+    border: none;
+}
+
+div.send  button:hover {    
+    background-color: rgba(255, 207, 34);
+    transition: 300ms ease-in-out;
+} */
+
+span.response {
+    position: relative;
+    margin-top: 4vh;
+    font-size: 2vh;
+}
+
+/* === FRIENDSHIPS REQUEST === */
+
+div.requests li {
+    display: flex;
+    align-items: center;
+}
+
+div.requests li span {
+    margin: 0 3vh;
+    flex: 12;
+}
+
+div.requests .icon use { 
+    transform: scale(1.3);
+    margin: 0;
+}
+
+div.requests .icon:hover use {
+    transform: scale(1.5);
+    stroke: url(#golden-gradient);    
+    stroke-width: 3.5;
+}
+
+div.requests .icon {
+    flex: 1;
+}

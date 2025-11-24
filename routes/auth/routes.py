@@ -28,7 +28,7 @@ def login():
             case sql.authExitCodes.INVALID_PASSWORD:
                 str_response = "Invalid password."
     
-    return f.render_template("login.html", response={"response": str_response})
+    return f.render_template("auth/login.html", response={"response": str_response})
 
 @blueprint.route("/signin", methods=["GET", "POST"])
 def signin():
@@ -57,7 +57,7 @@ def signin():
             case sql.authExitCodes.INVALID_DATA:
                 str_response = "Some of your creadentials are invalid."
         
-    return f.render_template("signin.html", response=str_response)
+    return f.render_template("auth/signin.html", response=str_response)
 
 @blueprint.route("/logout")
 def logout():

@@ -3,12 +3,16 @@
     <head>
         <title>NicheGames</title>
         <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home/news/news.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home/home.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home/home_side_bar.css') }}">
         <!-- href="{{ url_for('static', filename='index/style.css') }}" -->
     </head>
     <body>
         <div class="side-bar">
+            <div class="link" id="news">
+                <svg class="icon"><use href="#news-icon"></use></svg>
+                <span>News</span>
+            </div>
             <div class="link" id="play">
                 <svg class="icon"><use href="#play-icon"></use></svg>
                 <span>Play</span>
@@ -41,7 +45,7 @@
                 <h1 class="golden-text">A Cult is Born!</h1>
                 <p>
                     Niche Games, an idea I had a few weeks ago is kinda working. 
-                    We got an authentication system and a menu. Now I'll work on the first game. 
+                    We got an authentication system and a menu. Now I'll work on the friends system and other shit. 
                     Thank ya'll (there's absolutely no one reading ts).
                 </p>
                 <span class="date">23/11/2025 19:50 GMT-3</span>
@@ -58,6 +62,38 @@
                 <stop stop-color="#fff1a6" offset="100%" ></stop>
             </linearGradient>
         </defs>
+
+        <symbol id="news-icon" viewBox="-50 -50 100 100" transform="translate(50, 50)">
+            <g transform="scale(1, -1)">
+                <path d="
+                M -25 -25
+                L -25 30 
+                A 10 10 0 0 0 -15 40
+                L 35 40
+                A 10 10 0 0 0 45 30
+                L 45 25
+                L 25 25
+                L 25 30
+                A 10 10 0 0 0 35 40
+
+                M 25 25
+                L 25 -30
+                A 10 10 0 0 0 15 -40
+                L -35 -40
+                A 10 10 0 0 0 -45 -30
+                L -45 -25
+                L 5 -25
+                L 5 -30
+                A 10 10 0 0 1 15 -40
+
+                
+                M -15  25 L 15  25
+                M -15  15 L  0  15
+                M -15   5 L  5   5
+                M -15  -5 L 10  -5
+                M -15 -15 L  5 -15"/>
+            </g>
+        </symbol>
 
         <symbol id="play-icon" viewBox="-50 -50 100 100" transform="translate(50, 50)"> 
             <g>

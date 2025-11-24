@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" >
+    <style>
+        path {
+            stroke: currentColor;
+            fill-opacity: 0;
+            stroke-linecap: round;
+            stroke-width: 3.5;
+        }
+    </style>
+    <g transform="scale(1, -1)">
+        <path d="
+        M -25 -25
+        L -25 30 
+        A 10 10 0 0 0 -15 40
+        L 35 40
+        A 10 10 0 0 0 45 30
+        L 45 25
+        L 25 25
+        L 25 30
+        A 10 10 0 0 0 35 40
+
+        M 25 25
+        L 25 -30
+        A 10 10 0 0 0 15 -40
+        L -35 -40
+        A 10 10 0 0 0 -45 -30
+        L -45 -25
+        L 5 -25
+        L 5 -30
+        A 10 10 0 0 1 15 -40
+
+        "/>
+        <path d="M -15  25 L 15  25"/>
+        <path d="M -15  15 L  0  15"/>
+        <path d="M -15   5 L  5   5"/>
+        <path d="M -15  -5 L 10  -5"/>
+        <path d="M -15 -15 L  5 -15"/>
+    </g>
+</svg>  
