@@ -1,0 +1,80 @@
+<svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" viewBox="-80 -100 160 190">
+    <defs>
+        <radialGradient id="grad" cx="50%" cy="50%" r="70%">
+            <stop offset="0%" stop-color="#1fb8ff" />
+            <stop offset="100%" stop-color="rgba(0,4,122,0.6)" />
+        </radialGradient>
+    </defs>
+    <style>
+        .line {
+            fill: url(#grad);
+            animation: infinite pulse 3s alternate; -infinite orbit1 5s ease-in-out alternate;
+        }
+
+        .holy {
+            fill: transparent;
+            stroke: rgba(255,255,255,0.8); 
+            stroke-width: 1.2;
+            -animation: infinite orbit2 5s ease-in-out alternate;
+            box-shadow: 20px black;
+        }
+
+        @keyframes pulse {
+              0% {opacity: 100%;}
+            100% {opacity:  70%;}
+        }
+
+        @keyframes orbit1 {
+              0% {transform: translateX( 3px); rotate:  3deg;}
+            100% {transform: translateX(-3px); rotate: -3deg;}
+        }
+
+        @keyframes orbit2 {
+              0% {rotate:  6deg;}
+            100% {rotate: -6deg;}
+        }
+
+    </style>
+    <g transform="scale(1, -1)">
+        <g>
+            <circle class="holy" r="36" cy="18"/>
+            <circle class="holy" r="34" cy="18"/>
+
+            <circle class="holy" r="24" cy="-28"/>
+            <circle class="holy" r="30" cy="-54"/>
+            <circle class="holy" r="28" cy="-54"/>
+
+            <circle class="holy" r="16" cx="30" cy="39"/>
+            <circle class="holy" r="22" cx="42" cy="66"/>
+            <circle class="holy" r="20" cx="42" cy="66"/>
+
+            <circle class="holy" r="16" cx="-30" cy="39"/>
+            <circle class="holy" r="22" cx="-42" cy="66"/>
+            <circle class="holy" r="20" cx="-42" cy="66"/>
+        </g>
+
+        <path class="line" d="M 0 -58 L 20 -68 L 30 -53 L 10 -48 L -10 -48 L -30 -53 L -20 -68 L 0 -58 Z"/>
+        <path class="line" id="c1" d="M -10 -46 L 10 -46 L 15 -36 L -15 -36 Z"/>
+        <use href="#c1" transform="translate(0, 12)"/>
+        <use href="#c1" transform="translate(0, 24)"/>
+
+        <path class="line" d="M -10 -10 L 10 -10 L 20 10 L 20 35 L 10 45 L -10 45 L -20 35 L -20 10 L -10 -10"/>
+
+        <g id="g1">
+            <path class="line" id="a1" d="M 12 46 L 16 42 L 25 70 L 16 100 L 22 70 L 12 46 Z"/>
+            <path class="line" id="t1" d="M 22 34 L 22 26 L 44 45 L 34 50 Z M 35 52 L 45 47 L 53 68 L 46 84 L 36 84 L 43 72 L 42 64 L 32 64 Z M 32 66 L 40 66 L 34 84 Z"/>
+            <path class="line" id="p1" d="M 22 22 L 22 18 L 42 25 L 60 45 L 39 27 Z"/>
+            <path class="line" id="p2" d="M 22 16 L 22 12 L 45 15 L 64 24 L 43 17 Z"/>
+            <path class="line" id="p3" d="M 21.5 8 L 19.5 4 L 42 4 L 58 -2 L 43 6 Z"/>
+            <path class="line" id="p4" d="M 18 1 L 16 -3 L 36 -4 L 50 -12 L 38 -2 Z"/>
+        </g> 
+        <g id="g2">
+            <path class="line" id="a1" d="M -12 46  L -16 42  L -25 70 L -16 100 L -22 70 L -12 46 Z"/>
+            <path class="line" id="t1" d="M -22 34  L -22 26  L -44 45 L -34 50 Z M -35 52 L -45 47 L -53 68 L -46 84 L -36 84 L -43 72 L -42 64 L -32 64 Z M -32 66 L -40 66 L -34 84 Z"/>
+            <path class="line" id="p1" d="M -22 22  L -22 18  L -42 25 L -60 45  L -39 27 Z"/>
+            <path class="line" id="p2" d="M -22 16  L -22 12  L -45 15 L -64 24  L -43 17 Z"/>
+            <path class="line" id="p3" d="M -21.5 8 L -19.5 4 L -42 4  L -58 -2  L -43 6 Z"/>
+            <path class="line" id="p4" d="M -18 1   L -16 -3  L -36 -4 L -50 -12 L -38 -2 Z"/>
+        </g>    
+    </g>
+</svg>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>NicheGames - Log In</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='auth/auth.css') }}">
+        <!-- href="{{ url_for('static', filename='login/login.css') }}" -->
+    </head>
+    <body>
+        <!-- <svg class="logo">
+            <use href="#lobster-logo"></use>
+        </svg> -->
+        <div class="main">
+            <div class="title">
+                <span class="title1 golden-text">Do you remember...</span>
+                <span class="title2 golden-text">The Lobster?</span>
+            </div>
+            <form method="POST" action="/auth/login">
+                <input class="e-mail" type="text" name="e_mail" placeholder="Email adress" required>
+                <input class="password" type="password" name="password" placeholder="Password" required>
+
+                <div class="change-auth">
+                    <span class="change-auth">Don't you remember? Go</span>
+                    <a class="change-auth" href="/auth/signin">here</a>
+                </div>
+
+                <input value="Send" type="submit">
+            </form>
+            <span class="response"></span>
+        </div>
+    </body>
+    <script> window.RESPONSE = {{ response|tojson }}; </script>
+    <script type="module" src="{{ url_for('static', filename='auth/auth.js') }}"></script>
+</html>

@@ -1,0 +1,20 @@
+<svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 715 800">
+  <defs>
+    <style>
+      .cls-1,.cls-2,.cls-4{stroke:#494b9a;}
+      .cls-1,.cls-2{stroke-miterlimit:10;}
+      .cls-2,.cls-3,.cls-4{fill:none;}
+      .cls-2,.cls-4{stroke-width:30px;}
+      .cls-4{stroke-linecap:round;stroke-linejoin:round;}
+      .cls-5{fill:#494b9a;}
+    </style>
+  </defs>
+  <path class="cls-2" d="M526.82,862.7c-204.35,0-370-162.46-370-362.86S322.47,137,526.82,137Z" transform="translate(-126.82 -99.84)"/>
+  <rect id="SVGID" class="cls-3" width="400" height="800"/>
+  <circle class="cls-2" cx="400" cy="400" r="300"/>
+  <line class="cls-4" x1="400" y1="298.98" x2="576.78" y2="223.22"/>
+  <line class="cls-4" x1="501.02" y1="400" x2="576.78" y2="223.22"/>
+  <line class="cls-4" x1="298.92" y1="400.16" x2="223.22" y2="576.78"/>
+  <line class="cls-4" x1="400" y1="501.02" x2="223.22" y2="576.78"/>
+  <path class="cls-5" d="M526.82,415a85,85,0,1,1-85,85,85.1,85.1,0,0,1,85-85m0-30a115,115,0,1,0,115,115,115,115,0,0,0-115-115Z" transform="translate(-126.82 -99.84)"/>
+</svg>

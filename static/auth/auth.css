@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sedan:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+* {
+    box-sizing: border-box;
+    /* font-family: "Sedan"; */
+    font-family: "Cormorant Garamond";
+    font-weight: 700;
+}
+
+body {
+    /*background: linear-gradient(135deg,rgba(57, 184, 146, 1) 0%, rgba(83, 121, 237, 1) 100%);*/
+    background-color: white;
+    margin: 0;
+    overflow: hidden;
+}
+
+canvas {
+    position: relative;
+    z-index: -100;
+}
+
+div.main {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.main .title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.main .title .title1 {
+    font-size: 5vh;
+}
+
+div.main .title .title2 {
+    font-size: 10vh;
+}
+
+div.main .title .title3 {
+    font-size: 14vh;
+}
+
+.main input {
+    display: block;
+    background-color: white;
+}
+
+.main input[type="password"], [type="text"]{
+    padding: 1.5vh;
+    height: 6vh;
+    width: 45vh;
+    margin: 2vh 0;
+    font-size: 2.4vh;
+    border-radius: 1vh;
+    border: none;
+}
+
+.main input[type="password"]:focus, [type="text"]:focus {
+    box-shadow: 0px 0px 20px 0px rgba(255, 207, 34, 0.7);
+    transition: 300ms ease;
+    border: none;
+    outline: none;
+}
+
+.main .change-auth {
+    display: flex;
+    justify-content: center; /* centra horizontalmente */
+    align-items: center;     /* centra verticalmente */
+    height: 3vh;           /* solo si querés ver el centrado vertical */
+    color: white;
+    gap: 0.6vh;  
+}
+
+.main .change-auth span{
+    color: white;
+    font-size: 2vh;
+}
+
+.main .change-auth a{
+    color: rgba(255, 207, 34);
+    font-size: 2vh;
+}
+
+.main span.response {
+    position: absolute;
+    bottom: 2vh;
+    font-size: 2vh;
+    text-align: center;
+    width: calc(100% - 8vh)
+}
+
+.main input[type="submit"] {
+    width: 30vh;
+    height: 6vh;
+    margin: 2vh 0;
+
+    font-size: 3vh;
+
+    border-radius: 3vh;
+
+    border: none;
+
+    position: relative;
+    transform: translateX(-50%);
+    left: 50%;
+    transition: 300ms ease-in-out;
+}
+
+.main input[type="submit"]:hover {
+    background-color: rgba(255, 207, 34);
+    transition: 300ms ease-in-out;
+}
+
+.main span.response {
+    position: relative;
+    margin: 2vh;
+}
+
+svg {
+    display: block;         
+    position: absolute;
+    top: 0;                  
+    left: 0;
+    margin: 0;
+    padding: 0;
+    line-height: 0; 
+}
+
+.golden-text {
+    background: linear-gradient(
+        -45deg,
+        #b8860b 0%,
+        #ffd700 25%,
+        #ffeda4 50%,
+        #ffd700 75%,
+        #b8860b 100%
+    );
+    background-size: 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 6s infinite ease alternate;
+}
+
+@keyframes shine {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}

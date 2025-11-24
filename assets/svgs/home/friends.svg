@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">
+    <style>
+        path, circle {
+            stroke: currentColor;
+            fill-opacity: 0;
+            stroke-linecap: round;
+            stroke-width: 3.5;
+        }
+    </style>
+    <g transform="scale(1, -1)">
+        <circle cx="-15" cy="18" r="10" />
+        <path d="M -30 -15 L -30 -40 L 0 -40 L 0 -15 A 15 15 0 0 1 -30 -15"/>
+    </g>
+
+    <g transform="scale(1, -1)">
+        <circle cx="15" cy="28" r="10" />
+        <path d="M 30 -5 L 30 -30 L 6 -30 L 6 -15 A 19 19 0 0 1 -0.563 -0.929 A 15 15 0 0 0 15 10 A 15 15 0 0 0 30 -5"/>
+    </g>
+</svg>

@@ -1,0 +1,46 @@
+/* === MAIN === */
+
+.main {
+    position: absolute;
+    left: 20vw;
+    top: 0;
+    width: calc(80vw);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    color: white;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+/* === News === */
+
+div.news {
+    margin: 1.5vh 3vh ;
+    padding: 2vh 6vh;
+
+    backdrop-filter: blur(3px) brightness(0.5);
+    border: 1px solid rgb(90, 90, 90);
+
+    border-radius: 3vh;
+    position: relative;
+}
+
+div.news h1 {
+    font-size: 40px;
+    display: block;
+}
+
+div.news p {
+    font-size: 20px;
+}
+
+div.news span.date {
+    margin: 1vh 0;
+    font-size: 24px;
+    display: block;
+    text-align: right;
+}
+
