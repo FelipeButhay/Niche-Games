@@ -1,5 +1,5 @@
-import routes.auth.sql_management as sql
 import flask as f
+import src.routes.auth.sql_auth as sql
 
 blueprint = f.Blueprint("auth", __name__)
 
@@ -15,7 +15,6 @@ def login():
         password = f.request.form["password"]
 
         exitCode, user_id = sql.verifyUser(email, password)
-        print(exitCode)
         
         match exitCode:
             case sql.authExitCodes.SUCCESS:
@@ -28,7 +27,7 @@ def login():
             case sql.authExitCodes.INVALID_PASSWORD:
                 str_response = "Invalid password."
     
-    return f.render_template("auth/login.html", response={"response": str_response})
+    return f.render_template("auth/login.html.j2", response=str_response)
 
 @blueprint.route("/signin", methods=["GET", "POST"])
 def signin():
@@ -38,9 +37,7 @@ def signin():
         email = f.request.form["e_mail"]
         password = f.request.form["password"]
         
-        print(username, email, password)
         exitCode, user_id = sql.registerUser(username, email, password)
-        print(exitCode)
         
         match exitCode:
             case sql.authExitCodes.SUCCESS:
@@ -57,7 +54,7 @@ def signin():
             case sql.authExitCodes.INVALID_DATA:
                 str_response = "Some of your creadentials are invalid."
         
-    return f.render_template("auth/signin.html", response=str_response)
+    return f.render_template("auth/signin.html.j2", response=str_response)
 
 @blueprint.route("/logout")
 def logout():

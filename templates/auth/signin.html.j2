@@ -24,10 +24,9 @@
                 </div>
             
                 <input value="Send" type="submit">
-                <span class="response"></span>
+                <span class="response"> {{ response }} </span>
             </form>
         </div>
   	</body>
-    <script> window.RESPONSE = {{ response|tojson }}; </script>
     <script type="module" src="{{ url_for('static', filename='auth/auth.js') }}"></script>
 </html>

@@ -185,3 +185,13 @@ const github_div = document.querySelector("div.side-bar div#github");
 github_div.addEventListener("click", () => {
     window.open("https://github.com/FelipeButhay/Niche-Games");
 });
+
+// -----------------------
+//         SOCKETS
+// -----------------------
+
+const online_status_socket = io("/online-status")
+
+online_status_socket.on("connect", () => {
+    console.log("conecta3");
+});

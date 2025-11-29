@@ -1,12 +1,4 @@
 // -----------------------
-//        RESPONSE
-// -----------------------
-
-console.log(window.RESPONSE.response);
-const response_span = document.querySelector("span.response");
-response_span.textContent = window.RESPONSE != null ? window.RESPONSE.response : "";
-
-// -----------------------
 //         SHADER
 // -----------------------
 

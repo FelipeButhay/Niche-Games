@@ -96,4 +96,7 @@ def getUserData(user_id) -> dict:
     c.execute("SELECT * FROM users WHERE id = ?", (user_id,))
     df = pd.DataFrame(c.fetchall(), columns=[desc[0] for desc in c.description])
     
+    c.close()
+    conn.close()
+    
     return dict(df.iloc[0])

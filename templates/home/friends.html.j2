@@ -5,6 +5,7 @@
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home/friends/friends.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home/home.css') }}">
+        <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
         <!-- href="{{ url_for('static', filename='index/style.css') }}" -->
     </head>
     <body>
@@ -43,12 +44,18 @@
 		<div class="main">
         	<div class="container friends">
 				<h1 class="">Your Friends</h1>
-				<ul>
-                    <li id="friend-MaxVerstappen">
-                        <span class="username">MaxVerstappen</span>
-                        <span class="status golden-text">Online</span>
-                    </li>
-                </ul>
+                {% if friend_list %}
+				    <ul>
+                        {% for f in friend_list %}
+                            <li id="friend-{{ f.username }}">
+                                <span class="username">{{ f.username }}</span>
+                                <span class="status golden-text">{{ f.status }}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <span class="no-friends">You have no friends yet.</span>
+                {% endif %}
         	</div>
         	<div class="container send">
 				<h1 class="">Make some Friends in the Cult</h1>
@@ -63,13 +70,19 @@
         	</div>
         	<div class="container requests">
 				<h1 class="">Friendship requests</h1>
-				<ul>
-                    <li id="requests-MaxVerstappen">
-                        <span class="username">MaxVerstappen</span>
-                        <svg class="icon"><use href="#check-icon"></use></svg>
-                        <svg class="icon"><use href="#cross-icon"></use></svg>
-                    </li>
-                </ul>
+                {% if request_list %}
+				    <ul>
+                        {% for f in request_list %}
+                            <li id="friend-{{ f.username }}">
+                                <span class="username">{{ f.username }}</span>
+                                <svg class="icon"><use href="#check-icon"></use></svg>
+                                <svg class="icon"><use href="#cross-icon"></use></svg>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <span class="no-request">You have no requests now.</span>
+                {% endif %}
         	</div>
 		</div>
   	</body>
