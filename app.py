@@ -18,6 +18,9 @@ app.register_blueprint(home.blueprint, url_prefix="/home")
 from src.connections import online
 online.OnlineStatusNamespace(socket_io, r, "/online-status")
 
+from src.tools import jinja_filters as j2filt
+j2filt.register_filters(app)
+
 @app.route("/", methods=["GET", "POST"])
 def main():
     if "user_id" not in f.session:
@@ -25,6 +28,6 @@ def main():
     else:
         return f.redirect("/home/news")
 
-DEBUG = os.getenv("DEBUG")
+DEBUG = bool(os.getenv("DEBUG"))
 if __name__ == "__main__":
     socket_io.run(app, debug=DEBUG)

@@ -214,3 +214,11 @@ div.requests .icon:hover use {
 div.requests .icon {
     flex: 1;
 }
+
+span.no-friends, span.no-requests {
+    font-size: 3vh;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" >
     <style>
         path {
-            stroke: currentColor;
+            stroke: white;
             fill-opacity: 0;
             stroke-linecap: round;
             stroke-width: 3.5;
@@ -29,11 +29,10 @@
         L 5 -30
         A 10 10 0 0 1 15 -40
 
-        "/>
-        <path d="M -15  25 L 15  25"/>
-        <path d="M -15  15 L  0  15"/>
-        <path d="M -15   5 L  5   5"/>
-        <path d="M -15  -5 L 10  -5"/>
-        <path d="M -15 -15 L  5 -15"/>
+        M -15  25 L 15  25
+        M -15  15 L  0  15
+        M -15   5 L  5   5
+        M -15  -5 L 10  -5
+        M -15 -15 L  5 -15"/>
     </g>
 </svg>  

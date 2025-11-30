@@ -24,6 +24,7 @@ def home():
     
     return f.render_template("home/news.html.j2", news_json = news)
 
+
 @blueprint.route("/friends")
 @verify_conn
 def home_friends():
@@ -32,7 +33,12 @@ def home_friends():
     friend_list = sql.get_friends(user_id)
     request_list = sql.get_requests(user_id)
 
-    status = f.current_app.redis.smismember("connected_users", [li["id"] for li in friend_list])    
+    id_list = [li["id"] for li in friend_list]
+    status = []
+    
+    if len(id_list) != 0:
+        status = f.current_app.redis.smismember("connected_users", id_list)    
+        
     for i, s in zip(friend_list, status):
         i.update({"status": "Online" if s else "Offline"})
     
@@ -41,12 +47,14 @@ def home_friends():
         "requests": request_list,
     })
     
-    return f.render_template("home/friends.html.js", data=data_json)
+    return f.render_template("home/friends.html.j2", data=data_json)
+
 
 @blueprint.route("/games")
 @verify_conn
 def home_games():
     return f.render_template("home/games.html")
+
 
 @blueprint.route("/friends/send-request")
 def home_friends_send_request():

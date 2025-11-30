@@ -81,7 +81,7 @@
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <span class="no-request">You have no requests now.</span>
+                    <span class="no-requests">You have no requests now.</span>
                 {% endif %}
         	</div>
 		</div>
@@ -99,102 +99,14 @@
             </linearGradient>
         </defs>
 
-        <symbol id="cross-icon" viewBox="-50 -50 100 100" transform="translate(50, 50)">
-            <path d="M20 20 L -20 -20 M 20 -20 L -20 20"/>
-            <circle r="45">
-        </symbol>
+        {{ "assets/svgs/home/news.svg"    | get_svg | safe }}
+        {{ "assets/svgs/home/play.svg"    | get_svg | safe }}
+        {{ "assets/svgs/home/friends.svg" | get_svg | safe }}
+        {{ "assets/svgs/home/github.svg"  | get_svg | safe }}
+        {{ "assets/svgs/home/logout.svg"  | get_svg | safe }}
 
-        <symbol id="check-icon" viewBox="-50 -50 100 100" transform="translate(50, 50)">
-            <path transform="scale(1, -1)" d="M-30 -5 L -15 -20 L 25 20"/>
-            <circle r="45">
-        </symbol>
+        {{ "assets/svgs/home/check.svg"  | get_svg | safe }}
+        {{ "assets/svgs/home/cross.svg"  | get_svg | safe }}
 
-        <symbol id="news-icon" viewBox="-50 -50 100 100" transform="translate(50, 50)">
-            <g transform="scale(1, -1)">
-                <path d="
-                M -25 -25
-                L -25 30 
-                A 10 10 0 0 0 -15 40
-                L 35 40
-                A 10 10 0 0 0 45 30
-                L 45 25
-                L 25 25
-                L 25 30
-                A 10 10 0 0 0 35 40
-
-                M 25 25
-                L 25 -30
-                A 10 10 0 0 0 15 -40
-                L -35 -40
-                A 10 10 0 0 0 -45 -30
-                L -45 -25
-                L 5 -25
-                L 5 -30
-                A 10 10 0 0 1 15 -40
-
-                
-                M -15  25 L 15  25
-                M -15  15 L  0  15
-                M -15   5 L  5   5
-                M -15  -5 L 10  -5
-                M -15 -15 L  5 -15"/>
-            </g>
-        </symbol>
-
-        <symbol id="play-icon" viewBox="-50 -50 100 100" transform="translate(50, 50)"> 
-            <g>
-                <polygon id="eq-tri" points="0 45, -21.8 -12.5, 21.8 -12.5" />
-                <use href="#eq-tri" transform="rotate(30)"/>
-                <use href="#eq-tri" transform="rotate(60)"/>
-                <use href="#eq-tri" transform="rotate(90)"/>
-                <use href="#eq-tri" transform="rotate(120)"/>
-                <use href="#eq-tri" transform="rotate(150)"/>
-                <use href="#eq-tri" transform="rotate(180)"/>
-                <use href="#eq-tri" transform="rotate(210)"/>
-                <use href="#eq-tri" transform="rotate(240)"/>
-                <use href="#eq-tri" transform="rotate(270)"/>
-                <use href="#eq-tri" transform="rotate(300)"/>
-                <use href="#eq-tri" transform="rotate(330)"/>
-            </g>
-            <circle r="12"/>
-        </symbol>
-
-        <symbol id="friends-icon" viewBox="-50 -50 100 100" transform="translate(50, 50)">
-            <g transform="scale(1, -1)">
-                <circle cx="-15" cy="18" r="10" />
-                <path d="M -30 -15 L -30 -40 L 0 -40 L 0 -15 A 15 15 0 0 1 -30 -15"/>
-            </g>
-        
-            <g transform="scale(1, -1)">
-                <circle cx="15" cy="28" r="10" />
-                <path d="M 30 -5 L 30 -30 L 6 -30 L 6 -15 A 19 19 0 0 1 -0.563 -0.929 A 15 15 0 0 0 15 10 A 15 15 0 0 0 30 -5"/>
-            </g>
-        </symbol>
-
-        <symbol id="github-icon" viewBox="-50 -50 100 100">
-          <g transform="translate(-50,-50) scale(1.0)">
-            <path transform="scale(0.9) translate(0,5)"
-              d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69
-              2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127
-              -13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17
-              -4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052
-              4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6
-              -10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2
-              -.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052
-              a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63
-              9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038
-              3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283
-              1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526
-              0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691
-              C97.707 22 75.788 0 48.854 0z"/>
-          </g>
-        </symbol>
-
-
-        <symbol id="log-out-icon" viewBox="-50 -50 100 100" transform="translate(50, 50)">
-            <path d="M 30 25 L 30 30 A 10 10 0 0 1 20 40 L -20 40 A 10 10 0 0 1 -30 30 L -30 -30 A 10 10 0 0 1 -20 -40 L 20 -40 A 10 10 0 0 1 30 -30 L 30 -25"/>
-            <path d="M  15 15 L 30 0 L -20 0"/>
-            <path d="M 15 -15 L 30 0"/>
-        </symbol>
     </svg>
 </html>
