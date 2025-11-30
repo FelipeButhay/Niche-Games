@@ -42,15 +42,13 @@
         </dialog>
 
         <div class="main">
-            <div class="news">
-                <h1 class="golden-text">A Cult is Born!</h1>
-                <p>
-                    Niche Games, an idea I had a few weeks ago is kinda working. 
-                    We got an authentication system and a menu. Now I'll work on the friends system and other shit. 
-                    Thank ya'll (there's absolutely no one reading ts).
-                </p>
-                <span class="date">23/11/2025 19:50 GMT-3</span>
-            </div>
+            {% for n in news_json %}
+                <div class="news">
+                    <h1 class="golden-text"> {{n.title}} </h1>
+                    <p> {{ n.paragraph }} </p>
+                    <span class="date"> {{ n.date }} </span>
+                </div>
+            {% endfor %}
         </div>
   	</body>
     <script type="module" src="{{ url_for('static', filename='home/home.js') }}"></script>

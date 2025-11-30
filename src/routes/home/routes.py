@@ -1,6 +1,7 @@
 import flask as f
 import src.routes.home.sql_friends as sql
 import functools
+import json
 
 blueprint = f.Blueprint("home", __name__)
 
@@ -17,7 +18,11 @@ def verify_conn(func):
 @blueprint.route("/news")
 @verify_conn
 def home():
-    return f.render_template("home/news.html")
+    news = []
+    with open("logs/news.json", "r", encoding="utf-8") as news_json:
+        news = json.load(news_json)
+    
+    return f.render_template("home/news.html.j2", news_json = news)
 
 @blueprint.route("/friends")
 @verify_conn
@@ -36,7 +41,7 @@ def home_friends():
         "requests": request_list,
     })
     
-    return f.render_template("home/friends.html", data=data_json)
+    return f.render_template("home/friends.html.js", data=data_json)
 
 @blueprint.route("/games")
 @verify_conn

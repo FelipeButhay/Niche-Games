@@ -6,7 +6,7 @@ app = f.Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
 
 import redis 
-r = redis.Redis(host='localhost', port=6767, db=0) 
+r = redis.Redis(host='localhost', port=6379, db=0) 
 socket_io = sio.SocketIO(app, async_mode='threading')
 
 app.redis = r
