@@ -186,6 +186,15 @@ github_div.addEventListener("click", () => {
     window.open("https://github.com/FelipeButhay/Niche-Games");
 });
 
+// -------------------------
+//        MY ACCOUNT
+// -------------------------
+
+const myaccount_div = document.querySelector("div.side-bar div#my-account");
+myaccount_div.addEventListener("click", () => {
+    window.location.href = "/home/my-account";
+});
+
 // -----------------------
 //         SOCKETS
 // -----------------------

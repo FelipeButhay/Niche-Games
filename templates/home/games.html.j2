@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>NicheGames - Friends</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home/games/games.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home/home.css') }}">
+        <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+        <!-- href="{{ url_for('static', filename='index/style.css') }}" -->
+    </head>
+    <body>
+		{% include "/home/side_bar.html" %}
+
+		<div class="main">
+            {% for g in games %}
+                <div class="game" id="game-{{ g.name }}">
+                    <svg class="game-icon"><use href="#{{ g.name }}-icon"></use></svg>
+                    <span class="title">{{g.name}}</span>
+                    <p>{{g.desc}}</p>
+                </div>
+            {% endfor %}
+		</div>
+  	</body>
+
+    <script src="{{ url_for('static', filename='home/games/games.js') }}"></script>
+    <script src="{{ url_for('static', filename='home/home.js') }}" type="module"></script>
+
+	{% include "/home/svgs.html.j2"%}
+
+    <svg>
+        {% for g in games %}
+            {{ ("assets/svgs/game_icons/" ~ g.name ~ ".svg") | get_svg | safe }}
+        {% endfor %}
+    </svg>
+</html>

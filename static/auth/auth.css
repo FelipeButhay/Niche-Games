@@ -123,8 +123,11 @@ div.main .title .title3 {
 }
 
 .main span.response {
+    margin-top: 3vh;
     position: relative;
     margin: 2vh;
+    color: white;
+    text-align: center;
 }
 
 svg {

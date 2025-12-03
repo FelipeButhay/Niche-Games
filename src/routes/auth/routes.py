@@ -19,7 +19,7 @@ def login():
         match exitCode:
             case sql.authExitCodes.SUCCESS:
                 f.session["user_id"] = user_id
-                return f.redirect("/")
+                return f.redirect(f.session.get("last_url", "/home/news"))
             case sql.authExitCodes.UNKNOWN:
                 str_response = "Unknown error occured."
             case sql.authExitCodes.INVALID_DATA:
@@ -42,7 +42,7 @@ def signin():
         match exitCode:
             case sql.authExitCodes.SUCCESS:
                 f.session["user_id"] = user_id
-                return f.redirect("/")
+                return f.redirect(f.session.get("last_url", "/home/news"))
             case sql.authExitCodes.UNKNOWN:
                 str_response = "Unknown error occured."
             case sql.authExitCodes.EMAIL_EXISTS:

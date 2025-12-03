@@ -26,7 +26,7 @@ def main():
     if "user_id" not in f.session:
         return f.redirect("/auth/signin")
     else:
-        return f.redirect("/home/news")
+        return f.redirect(f.session["last_url"])
 
 DEBUG = bool(os.getenv("DEBUG"))
 if __name__ == "__main__":

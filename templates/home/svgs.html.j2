@@ -1,0 +1,16 @@
+    <svg>
+        <defs>
+            <linearGradient id="golden-gradient">
+                <stop stop-color="#b8860b" offset="0"   ></stop>          
+                <stop stop-color="#ffd700" offset="50%" ></stop>
+                <stop stop-color="#fff1a6" offset="100%" ></stop>
+            </linearGradient>
+        </defs>
+
+        {{ "assets/svgs/home/news.svg"      | get_svg | safe }}
+        {{ "assets/svgs/home/play.svg"      | get_svg | safe }}
+        {{ "assets/svgs/home/friends.svg"   | get_svg | safe }}
+        {{ "assets/svgs/home/github.svg"    | get_svg | safe }}
+        {{ "assets/svgs/home/logout.svg"    | get_svg | safe }}
+        {{ "assets/svgs/home/myaccount.svg" | get_svg | safe }}
+    </svg>

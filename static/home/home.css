@@ -38,7 +38,7 @@ canvas {
     flex-direction: column;
     justify-content: center;
     align-items: start;
-    padding-left: 3vw;
+    padding-left: 2vw;
     gap: 1.5vh;
 }
 
@@ -51,12 +51,16 @@ canvas {
     border-radius: 1vw;
     transition: all 0.3s ease;
     cursor: pointer;
-    font-size: 3.6vh;
-    width: 70%;
+    font-size: 3.4vh;
+    width: calc(100% - 3vw);
 
     position: relative;
 
     color: white;
+}
+
+.link span {
+    transition: 0.3s ease;
 }
 
 .link:hover {
@@ -77,7 +81,7 @@ canvas {
     flex-shrink: 0;
     vertical-align: middle;
     display: inline-block;
-    transition: transform 0.3s ease, color 0.3s ease, filter 0.3s ease;
+    transition: 0.3s ease;
     margin-right: 1vh;
 
     position: relative;

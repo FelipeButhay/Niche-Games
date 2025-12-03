@@ -3,8 +3,8 @@
     <head>
         <title>NicheGames - News</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home/news/news.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home/home.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home/myaccount/myaccount.css') }}">
         <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
         <!-- href="{{ url_for('static', filename='index/style.css') }}" -->
     </head>
@@ -12,13 +12,11 @@
 		{% include "/home/side_bar.html" %}
 
         <div class="main">
-            {% for n in news_json %}
-                <div class="news">
-                    <h1 class="golden-text"> {{n.title}} </h1>
-                    <p> {{ n.paragraph }} </p>
-                    <span class="date"> {{ n.date }} </span>
-                </div>
-            {% endfor %}
+            <div class="user-info">
+                <svg class="profile-pic"><use href="#myaccount-icon"></use></svg>
+                <span class="username golden-text">{{ user.username }}</span>
+                <span class="user-id">{{ user.id | format_id | safe}}</span>
+            </div>
         </div>
   	</body>
     <script type="module" src="{{ url_for('static', filename='home/home.js') }}"></script>

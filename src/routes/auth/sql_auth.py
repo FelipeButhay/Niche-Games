@@ -7,7 +7,7 @@ from enum import Enum
 
 USERNAME_REGEX=r"^[a-zA-Z0-9_]{3,20}$"
 EMAIL_REGEX=r"^[^\s@]+@[^\s@]+\.[^\s@]+$"
-PASSWORD_REGEX=r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$"
+PASSWORD_REGEX=r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,30}$"
 
 #EXIT CODES
 class authExitCodes(Enum):
@@ -88,15 +88,3 @@ def verifyUser(email:str, password: str) -> tuple[int, int]:
     conn.close()
         
     return exitCode, user_id
-
-def getUserData(user_id) -> dict:
-    conn = sql.connect("databases/users.db")
-    c = conn.cursor()
-    
-    c.execute("SELECT * FROM users WHERE id = ?", (user_id,))
-    df = pd.DataFrame(c.fetchall(), columns=[desc[0] for desc in c.description])
-    
-    c.close()
-    conn.close()
-    
-    return dict(df.iloc[0])

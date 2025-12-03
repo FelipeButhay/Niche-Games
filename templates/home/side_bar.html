@@ -1,0 +1,35 @@
+<div class="side-bar">            
+    <div class="link" id="news">
+        <svg class="icon"><use href="#news-icon"></use></svg>
+        <span>News</span>
+    </div>
+    <div class="link" id="play">
+        <svg class="icon"><use href="#play-icon"></use></svg>
+        <span>Play</span>
+    </div>
+    <div class="link" id="friends">
+        <svg class="icon"><use href="#friends-icon"></use></svg>
+        <span>Friends</span>
+    </div>
+    <div class="link" id="github">
+        <svg class="icon"><use href="#github-icon"></use></svg>
+        <span>Github</span>
+    </div>
+    <div class="link" id="log-out">
+        <svg class="icon"><use href="#logout-icon"></use></svg>
+        <span>Log Out</span>
+    </div>
+    <div class="link" id="my-account">
+        <svg class="icon"><use href="#myaccount-icon"></use></svg>
+        <span>My Account</span>
+    </div>
+</div>
+
+<dialog class="log-out modal">
+    <h3 class="golden-text">You can Hide but you will</h3>
+    <h2 class="golden-text">NEVER ESCAPE</h2>
+    <h1 class="golden-text">The Lobster</h1>
+
+    <button id="log-out-button" onclick="window.location.replace('/auth/logout')">I'll take the risk</button>
+    <button id="close-modal">I'm sorry</button>
+</dialog>

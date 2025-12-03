@@ -9,47 +9,21 @@
         <!-- href="{{ url_for('static', filename='index/style.css') }}" -->
     </head>
     <body>
-		<div class="side-bar">            
-            <div class="link" id="news">
-                <svg class="icon"><use href="#news-icon"></use></svg>
-                <span>News</span>
-            </div>
-            <div class="link" id="play">
-                <svg class="icon"><use href="#play-icon"></use></svg>
-                <span>Play</span>
-            </div>
-            <div class="link" id="friends">
-                <svg class="icon"><use href="#friends-icon"></use></svg>
-                <span>Friends</span>
-            </div>
-            <div class="link" id="github">
-                <svg class="icon"><use href="#github-icon"></use></svg>
-                <span>Github</span>
-            </div>
-            <div class="link" id="log-out">
-                <svg class="icon"><use href="#log-out-icon"></use></svg>
-                <span>Log Out</span>
-            </div>
-        </div>
-
-        <dialog class="log-out modal">
-            <h3 class="golden-text">You can Hide but you will</h3>
-            <h2 class="golden-text">NEVER ESCAPE</h2>
-            <h1 class="golden-text">The Lobster</h1>
-
-            <button id="log-out-button" onclick="window.location.replace('/auth/logout')">I'll take the risk</button>
-            <button id="close-modal">I'm sorry</button>
-        </dialog>
+		{% include "/home/side_bar.html" %}
 
 		<div class="main">
         	<div class="container friends">
 				<h1 class="">Your Friends</h1>
-                {% if friend_list %}
+                {% if friends %}
 				    <ul>
-                        {% for f in friend_list %}
-                            <li id="friend-{{ f.username }}">
+                        {% for f in friends %}
+                            <li id="friend-{{ f.id }}">
                                 <span class="username">{{ f.username }}</span>
-                                <span class="status golden-text">{{ f.status }}</span>
+                                <span class="status 
+                                    {% if f.status != 'Offline'%} 
+                                        golden-text 
+                                    {% endif %}"
+                                >{{ f.status }}</span>
                             </li>
                         {% endfor %}
                     </ul>
@@ -70,13 +44,14 @@
         	</div>
         	<div class="container requests">
 				<h1 class="">Friendship requests</h1>
-                {% if request_list %}
+                {% if requests %}
 				    <ul>
-                        {% for f in request_list %}
-                            <li id="friend-{{ f.username }}">
-                                <span class="username">{{ f.username }}</span>
-                                <svg class="icon"><use href="#check-icon"></use></svg>
-                                <svg class="icon"><use href="#cross-icon"></use></svg>
+                        {% for u in requests %}
+                            <li id="request-{{ u.id }}">
+                                <span class="username">{{ u.username }}</span>
+
+                                <svg class="icon check"><use href="#check-icon"></use></svg>
+                                <svg class="icon cross"><use href="#cross-icon"></use></svg>
                             </li>
                         {% endfor %}
                     </ul>
@@ -90,23 +65,5 @@
     <script src="{{ url_for('static', filename='home/friends/friends.js') }}"></script>
     <script src="{{ url_for('static', filename='home/home.js') }}" type="module"></script>
 
-	<svg>
-        <defs>
-            <linearGradient id="golden-gradient">
-                <stop stop-color="#b8860b" offset="0"   ></stop>          
-                <stop stop-color="#ffd700" offset="50%" ></stop>
-                <stop stop-color="#fff1a6" offset="100%" ></stop>
-            </linearGradient>
-        </defs>
-
-        {{ "assets/svgs/home/news.svg"    | get_svg | safe }}
-        {{ "assets/svgs/home/play.svg"    | get_svg | safe }}
-        {{ "assets/svgs/home/friends.svg" | get_svg | safe }}
-        {{ "assets/svgs/home/github.svg"  | get_svg | safe }}
-        {{ "assets/svgs/home/logout.svg"  | get_svg | safe }}
-
-        {{ "assets/svgs/home/check.svg"  | get_svg | safe }}
-        {{ "assets/svgs/home/cross.svg"  | get_svg | safe }}
-
-    </svg>
+	{% include "/home/svgs.html.j2"%}
 </html>

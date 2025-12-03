@@ -26,3 +26,11 @@ def register_filters(app):
                     
         except:
             return f"<!-- Invalid file path: {file_path} -->"
+        
+    @app.template_filter("format_id")
+    def format_id(id):
+        N = 4
+        n_dig = len(str(id))
+        str_0s = (N - n_dig) * "0"
+        
+        return f"#{str_0s}{id}"
