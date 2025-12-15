@@ -59,6 +59,8 @@ void main() {
     float theta = atan(uv.y, uv.x);// - 1.*PI*cos(time*0.25)*cos(time*0.8);
     float radius = pythagoras2(uv);
 
+    vec3 color_sum = vec3(0. ,0. ,0.);
+
     for (int j = 0; j < 3; j++) {
         float r = float(j)*PI/6.;
         uv = radius*vec2(cos(theta + r), sin(theta + r));
@@ -82,6 +84,10 @@ void main() {
         col /= glow + 0.5;
         col = pow(col, vec3(0.85)); // corrección gamma
         //col = clamp3(col, 0., 1.);
-        gl_FragColor += vec4(col, 1.0);
+        color_sum += col;
     }
+
+    // float t = clamp(time, 0., 1.);
+    float t = 1.;
+    gl_FragColor = vec4(mix(vec3(0.), color_sum, t), 1.);
 }

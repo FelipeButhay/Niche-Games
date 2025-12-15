@@ -56,6 +56,11 @@ def signin():
         
     return f.render_template("auth/signin.html.j2", response=str_response)
 
+@blueprint.route("/get-glsl")
+def get_glsl():
+    with open("assets/shaders/auth_shader.frag", "r", encoding="utf-8") as glsl:
+        return f.Response(status=200, response=glsl.read())
+
 @blueprint.route("/logout")
 def logout():
     f.session.pop("user_id", None)

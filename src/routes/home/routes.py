@@ -113,3 +113,8 @@ def home_friends_accept_request():
 def home_account():
     user_id = f.session.get("user_id")
     return f.render_template("home/my_account.html.j2", user = tools.getUserData(user_id))
+
+@blueprint.route("/get-glsl")
+def get_glsl():
+    with open("assets/shaders/home_shader.frag", "r", encoding="utf-8") as glsl:
+        return f.Response(status=200, response=glsl.read())
