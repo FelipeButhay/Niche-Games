@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="-10 -25 20 50">
+    <polygon id="up"   points="0 -24, 10 -4, -10 -4" fill="white"/>
+    <polygon id="down" points="0  24, 10  4, -10  4" fill="#888"/>
+</svg>

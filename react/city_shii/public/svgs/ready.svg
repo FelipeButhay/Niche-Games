@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="-50 -50 100 100">
+    <style>
+        path{
+            stroke: white;
+            stroke-width: 3.5;
+            fill: transparent;
+        }
+    </style>
+    <path d="
+        M -5 -40
+        L -5 -48
+        L 5 -48
+        L 5 -40
+             "/>
+
+    <circle id="mark" r="1.5" cy="34" fill="white"/>
+    <use xlink:href="#mark" transform="rotate(30)"/>
+    <use xlink:href="#mark" transform="rotate(60)"/>
+    <use xlink:href="#mark" transform="rotate(90)"/>
+    <use xlink:href="#mark" transform="rotate(120)"/>
+    <use xlink:href="#mark" transform="rotate(150)"/>
+    <use xlink:href="#mark" transform="rotate(180)"/>
+    <use xlink:href="#mark" transform="rotate(210)"/>
+    <use xlink:href="#mark" transform="rotate(240)"/>
+    <use xlink:href="#mark" transform="rotate(270)"/>
+    <use xlink:href="#mark" transform="rotate(300)"/>
+    <use xlink:href="#mark" transform="rotate(330)"/>
+
+    <path transform="scale(.7, -.7)" d="M-30 -5 L -15 -20 L 25 20"/>
+
+    <circle r="40" cy="0" fill="transparent" stroke="white" stroke-width="3.5"/>
+</svg>
+
+
