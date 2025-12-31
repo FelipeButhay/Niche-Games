@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+    /* type */
+    --ff-mono: "Space Mono", monospace;
+    --ff: "Space Grotesk", sans-serif;
+    --h1: 700 3rem/2em var(--ff);
+    --h2: 600 2rem/1.4em var(--ff);
+    --h3: 500 1.5rem/1.4em var(--ff);
+    --h4: 400 1.25rem/1.4em var(--ff);
+    --p: 300 1rem/1.6em var(--ff);
+    --small: 300 0.75rem/1.6em var(--ff);
+
+    /* colors */
+    --bg-dark: hsl(0, 0%, 0%);
+    --bg: hsl(0, 0%, 10%);
+    --bg-light: hsl(0, 0%, 20%);
+    --text: hsl(0, 0%, 95%);
+    --text-muted: hsl(0, 0%, 70%);
+    --primary: rgb(045,149,235);
+    --secondary: rgb(18, 37, 141);
+    --gradient: linear-gradient(215deg, var(--primary), var(--secondary));
+
+    /* colores para cada jugador en funcion del pin id*/
+    --color1: rgb(255, 0, 0);
+    --color2: rgb(0, 255, 0);
+    --color3: rgb(0, 0, 255);
+    --color4: rgb(255, 255, 0);
+    --color5: rgb(255, 0, 255);
+    --color6: rgb(0, 255, 255);
+    --color7: hsl(0, 0%, 95%);
+    --color8: rgb(255, 127, 0);
+    
+    /* shadows */
+    --shadow-s: 
+        inset 0 1px 2px #ffffff30, 
+        0 1px 2px #00000030,
+        0 2px 4px #00000015;
+    --shadow-m: 
+        inset 0 1px 2px #ffffff50, 
+        0 2px 4px #00000030,
+        0 4px 8px #00000015;
+    --shadow-l: 
+        inset 0 1px 2px #ffffff50, 
+        0 4px 6px #00000030,
+        0 6px 10px #00000015;
+        
+    --transition: all .3s ease-in-out;
+}

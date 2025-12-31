@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>NicheGames - Friends</title>
+        <title>NicheGames - Games</title>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home/games/games.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home/home.css') }}">
@@ -13,10 +13,12 @@
 
 		<div class="main">
             {% for g in games %}
-                <div class="game" id="game-{{ g.name }}">
+                <div class="game" id="{{ g.id }}">
                     <svg class="game-icon"><use href="#{{ g.name }}-icon"></use></svg>
                     <span class="title">{{g.name}}</span>
                     <p>{{g.desc}}</p>
+                    {# <button class="host">Host</button>
+                    <button class="join">Join</button> #}
                 </div>
             {% endfor %}
 		</div>

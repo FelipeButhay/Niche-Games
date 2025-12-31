@@ -1,0 +1,272 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* html, body {
+    height: 100%;
+    margin: 0;
+    background: black;
+    overflow-y: scroll; Mantiene la barra de scroll normal
+} */
+
+div.background {
+    background-color: var(--bg-dark);
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    /* align-items: center; */
+    padding: 5vh;
+    /* gap: 6vh; */
+    padding-right: 0;
+    z-index: -100;
+}
+
+div.main-card {
+    position: relative;
+    flex: 4;
+    background-color: var(--bg);
+    box-shadow: var(--shadow-l);
+
+    padding: 4vh;
+    border-radius: 1vh;
+    align-self: center;
+
+    z-index: 2;
+}
+
+div.earth-container {
+    flex: 5;
+}
+
+div.earth-container canvas {
+    /* overflow: hidden;
+    transform: translateY(-5vh);
+    position: fixed; */
+}
+
+span.sub-subtitle {
+    font: var(--h3);
+    color: var(--text-muted);
+    display: block;
+}
+
+span.title {
+    font: var(--h1);
+    color: var(--text);
+    display: block;
+}
+
+span.subtitle {
+    font: var(--h2);
+    color: var(--text);
+    display: block;   
+}
+
+button {
+    cursor: pointer;
+
+    font: var(--h3);
+    height: 3.6rem;
+    border-radius: 1.8rem;
+    width: 14vw;
+    min-width: 8rem;
+
+    color: var(--text);
+
+    outline: none;
+    border: solid var(--gradient) 2px;
+
+    background-color: var(--bg-light);
+    box-shadow: var(--shadow-m);
+
+    background: linear-gradient(var(--bg-light), var(--bg-light)) padding-box,
+                var(--gradient) border-box;
+    border: solid 2px transparent;
+}
+
+button.send-butt.active:hover {
+    animation: transition-background .4s ease-in-out;
+    background: linear-gradient(215deg, var(--primary) 0%, var(--secondary) 100%, var(--bg-light) 100%) padding-box,
+    var(--gradient) border-box;
+    border: solid 2px transparent;
+}
+
+button.send-butt.active:not(:hover) {
+    animation: transition-background-inv .4s ease-in-out;
+}
+
+div.round-time {
+    display: flex;
+}
+
+span.chrono {
+    text-align: right;
+    font-family: var(--ff-mono);
+}
+
+@keyframes transition-background { 
+      0% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)   0%, var(--bg-light)   0%) padding-box, var(--gradient) border-box;}
+      2% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)   2%, var(--bg-light)   2%) padding-box, var(--gradient) border-box;}
+      4% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)   4%, var(--bg-light)   4%) padding-box, var(--gradient) border-box;}
+      6% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)   6%, var(--bg-light)   6%) padding-box, var(--gradient) border-box;}
+      8% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)   8%, var(--bg-light)   8%) padding-box, var(--gradient) border-box;}
+     10% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  10%, var(--bg-light)  10%) padding-box, var(--gradient) border-box;}
+     12% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  12%, var(--bg-light)  12%) padding-box, var(--gradient) border-box;}
+     14% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  14%, var(--bg-light)  14%) padding-box, var(--gradient) border-box;}
+     16% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  16%, var(--bg-light)  16%) padding-box, var(--gradient) border-box;}
+     18% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  18%, var(--bg-light)  18%) padding-box, var(--gradient) border-box;}
+     20% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  20%, var(--bg-light)  20%) padding-box, var(--gradient) border-box;}
+     22% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  22%, var(--bg-light)  22%) padding-box, var(--gradient) border-box;}
+     24% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  24%, var(--bg-light)  24%) padding-box, var(--gradient) border-box;}
+     26% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  26%, var(--bg-light)  26%) padding-box, var(--gradient) border-box;}
+     28% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  28%, var(--bg-light)  28%) padding-box, var(--gradient) border-box;}
+     30% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  30%, var(--bg-light)  30%) padding-box, var(--gradient) border-box;}
+     32% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  32%, var(--bg-light)  32%) padding-box, var(--gradient) border-box;}
+     34% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  34%, var(--bg-light)  34%) padding-box, var(--gradient) border-box;}
+     36% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  36%, var(--bg-light)  36%) padding-box, var(--gradient) border-box;}
+     38% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  38%, var(--bg-light)  38%) padding-box, var(--gradient) border-box;}
+     40% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  40%, var(--bg-light)  40%) padding-box, var(--gradient) border-box;}
+     42% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  42%, var(--bg-light)  42%) padding-box, var(--gradient) border-box;}
+     44% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  44%, var(--bg-light)  44%) padding-box, var(--gradient) border-box;}
+     46% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  46%, var(--bg-light)  46%) padding-box, var(--gradient) border-box;}
+     48% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  48%, var(--bg-light)  48%) padding-box, var(--gradient) border-box;}
+     50% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  50%, var(--bg-light)  50%) padding-box, var(--gradient) border-box;}
+     52% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  52%, var(--bg-light)  52%) padding-box, var(--gradient) border-box;}
+     54% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  54%, var(--bg-light)  54%) padding-box, var(--gradient) border-box;}
+     56% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  56%, var(--bg-light)  56%) padding-box, var(--gradient) border-box;}
+     58% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  58%, var(--bg-light)  58%) padding-box, var(--gradient) border-box;}
+     60% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  60%, var(--bg-light)  60%) padding-box, var(--gradient) border-box;}
+     62% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  62%, var(--bg-light)  62%) padding-box, var(--gradient) border-box;}
+     64% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  64%, var(--bg-light)  64%) padding-box, var(--gradient) border-box;}
+     66% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  66%, var(--bg-light)  66%) padding-box, var(--gradient) border-box;}
+     68% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  68%, var(--bg-light)  68%) padding-box, var(--gradient) border-box;}
+     70% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  70%, var(--bg-light)  70%) padding-box, var(--gradient) border-box;}
+     72% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  72%, var(--bg-light)  72%) padding-box, var(--gradient) border-box;}
+     74% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  74%, var(--bg-light)  74%) padding-box, var(--gradient) border-box;}
+     76% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  76%, var(--bg-light)  76%) padding-box, var(--gradient) border-box;}
+     78% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  78%, var(--bg-light)  78%) padding-box, var(--gradient) border-box;}
+     80% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  80%, var(--bg-light)  80%) padding-box, var(--gradient) border-box;}
+     82% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  82%, var(--bg-light)  82%) padding-box, var(--gradient) border-box;}
+     84% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  84%, var(--bg-light)  84%) padding-box, var(--gradient) border-box;}
+     86% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  86%, var(--bg-light)  86%) padding-box, var(--gradient) border-box;}
+     88% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  88%, var(--bg-light)  88%) padding-box, var(--gradient) border-box;}
+     90% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  90%, var(--bg-light)  90%) padding-box, var(--gradient) border-box;}
+     92% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  92%, var(--bg-light)  92%) padding-box, var(--gradient) border-box;}
+     94% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  94%, var(--bg-light)  94%) padding-box, var(--gradient) border-box;}
+     96% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  96%, var(--bg-light)  96%) padding-box, var(--gradient) border-box;}
+     98% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary)  98%, var(--bg-light)  98%) padding-box, var(--gradient) border-box;}
+    100% {background: linear-gradient(215deg, var(--primary) 0%, var(--secondary) 100%, var(--bg-light) 100%) padding-box, var(--gradient) border-box;}
+}
+
+@keyframes transition-background-inv { 
+      0% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary) 100%, var(--bg-light) 100%) padding-box, var(--gradient) border-box;}
+      2% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  98%, var(--bg-light)  98%) padding-box, var(--gradient) border-box;}
+      4% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  96%, var(--bg-light)  96%) padding-box, var(--gradient) border-box;}
+      6% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  94%, var(--bg-light)  94%) padding-box, var(--gradient) border-box;}
+      8% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  92%, var(--bg-light)  92%) padding-box, var(--gradient) border-box;}
+     10% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  90%, var(--bg-light)  90%) padding-box, var(--gradient) border-box;}
+     12% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  88%, var(--bg-light)  88%) padding-box, var(--gradient) border-box;}
+     14% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  86%, var(--bg-light)  86%) padding-box, var(--gradient) border-box;}
+     16% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  84%, var(--bg-light)  84%) padding-box, var(--gradient) border-box;}
+     18% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  82%, var(--bg-light)  82%) padding-box, var(--gradient) border-box;}
+     20% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  80%, var(--bg-light)  80%) padding-box, var(--gradient) border-box;}
+     22% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  78%, var(--bg-light)  78%) padding-box, var(--gradient) border-box;}
+     24% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  76%, var(--bg-light)  76%) padding-box, var(--gradient) border-box;}
+     26% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  74%, var(--bg-light)  74%) padding-box, var(--gradient) border-box;}
+     28% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  72%, var(--bg-light)  72%) padding-box, var(--gradient) border-box;}
+     30% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  70%, var(--bg-light)  70%) padding-box, var(--gradient) border-box;}
+     32% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  68%, var(--bg-light)  68%) padding-box, var(--gradient) border-box;}
+     34% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  66%, var(--bg-light)  66%) padding-box, var(--gradient) border-box;}
+     36% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  64%, var(--bg-light)  64%) padding-box, var(--gradient) border-box;}
+     38% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  62%, var(--bg-light)  62%) padding-box, var(--gradient) border-box;}
+     40% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  60%, var(--bg-light)  60%) padding-box, var(--gradient) border-box;}
+     42% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  58%, var(--bg-light)  58%) padding-box, var(--gradient) border-box;}
+     44% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  56%, var(--bg-light)  56%) padding-box, var(--gradient) border-box;}
+     46% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  54%, var(--bg-light)  54%) padding-box, var(--gradient) border-box;}
+     48% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  52%, var(--bg-light)  52%) padding-box, var(--gradient) border-box;}
+     50% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  50%, var(--bg-light)  50%) padding-box, var(--gradient) border-box;}
+     52% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  48%, var(--bg-light)  48%) padding-box, var(--gradient) border-box;}
+     54% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  46%, var(--bg-light)  46%) padding-box, var(--gradient) border-box;}
+     56% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  44%, var(--bg-light)  44%) padding-box, var(--gradient) border-box;}
+     58% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  42%, var(--bg-light)  42%) padding-box, var(--gradient) border-box;}
+     60% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  40%, var(--bg-light)  40%) padding-box, var(--gradient) border-box;}
+     62% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  38%, var(--bg-light)  38%) padding-box, var(--gradient) border-box;}
+     64% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  36%, var(--bg-light)  36%) padding-box, var(--gradient) border-box;}
+     66% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  34%, var(--bg-light)  34%) padding-box, var(--gradient) border-box;}
+     68% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  32%, var(--bg-light)  32%) padding-box, var(--gradient) border-box;}
+     70% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  30%, var(--bg-light)  30%) padding-box, var(--gradient) border-box;}
+     72% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  28%, var(--bg-light)  28%) padding-box, var(--gradient) border-box;}
+     74% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  26%, var(--bg-light)  26%) padding-box, var(--gradient) border-box;}
+     76% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  24%, var(--bg-light)  24%) padding-box, var(--gradient) border-box;}
+     78% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  22%, var(--bg-light)  22%) padding-box, var(--gradient) border-box;}
+     80% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  20%, var(--bg-light)  20%) padding-box, var(--gradient) border-box;}
+     82% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  18%, var(--bg-light)  18%) padding-box, var(--gradient) border-box;}
+     84% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  16%, var(--bg-light)  16%) padding-box, var(--gradient) border-box;}
+     86% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  14%, var(--bg-light)  14%) padding-box, var(--gradient) border-box;}
+     88% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  12%, var(--bg-light)  12%) padding-box, var(--gradient) border-box;}
+     90% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)  10%, var(--bg-light)  10%) padding-box, var(--gradient) border-box;}
+     92% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)   8%, var(--bg-light)   8%) padding-box, var(--gradient) border-box;}
+     94% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)   6%, var(--bg-light)   6%) padding-box, var(--gradient) border-box;}
+     96% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)   4%, var(--bg-light)   4%) padding-box, var(--gradient) border-box;}
+     98% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)   2%, var(--bg-light)   2%) padding-box, var(--gradient) border-box;}
+    100% {background: linear-gradient(45deg, var(--secondary) 0%, var(--primary)   0%, var(--bg-light)   0%) padding-box, var(--gradient) border-box;}
+}
+
+.loader {
+    width: fit-content;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 30px;
+    background: radial-gradient(circle closest-side, var(--text) 94%,#0000) right/calc(200% - 1em) 100%;
+    animation: l24 1s infinite alternate linear;
+}
+.loader::before {
+    content: "Loading...";
+    line-height: 1em;
+    color: #0000;
+    background: inherit;
+    background-image: radial-gradient(circle closest-side, var(--bg) 94%, var(--text));
+    -webkit-background-clip:text;
+            background-clip:text;
+}
+
+@keyframes l24{
+    100%{background-position: left}
+}
+
+@keyframes gradient-flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+div.player-card {
+    background-color: var(--bg-light);
+    padding: 3vh;
+    padding-left: 4vh;
+    position: relative;
+
+    overflow: hidden;
+    border-radius: 1vh;
+    box-shadow: var(--shadow-l);
+}
+
+object {
+    top: 50%;
+    position: absolute;
+    height: 60%;
+    right: 3vh;
+    transform: translateY(-50%);
+}
+
+div.color-stripe {
+    top: 0;
+    left: 0;
+    position: absolute;
+    height: 100%;
+    max-width: 10px;
+    width: 10px;
+}

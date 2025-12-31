@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">
+    <style>
+        path, circle {
+            stroke: white;
+            fill-opacity: 0;
+            stroke-linecap: round;
+            stroke-width: 3.5;
+        }
+    </style>
+    <path d="
+        M 30 40 
+        A 10 10 0 0 0 40 30 
+        L 40 -15 
+        A 10 10 0 0 0 30 -25 
+        L -15 -25 
+        A 10 10 0 0 0 -25 -15 
+        L -25 30
+        A 10 10 0 0 0 -15 40
+        L 30 40
+
+        M 25 -30 
+        A 10 10 0 0 0 15 -40 
+        L -30 -40 
+        A 10 10 0 0 0 -40 -30 
+        L -40 15
+        A 10 10 0 0 0 -30 25
+        M
+        Z"
+    />
+</svg>

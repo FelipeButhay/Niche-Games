@@ -1,0 +1,149 @@
+div.result-background {
+    background-color: var(--bg-dark);
+    padding: 5vh;
+    padding-top: 3vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.result-background div {
+    /* height: 100vh; */
+    width: 100%;
+}
+
+div.result-table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.table {
+    display: flex;
+    flex-direction: column;
+    max-width: 95%;
+    margin-top: 4vh;
+    margin-bottom: 7vh;
+    padding: 2vh;
+    background-color: var(--bg);
+    box-shadow: var(--shadow-l);
+    border-radius: 1vh;
+}
+
+div.table-header {
+    height: 4rem;
+    border-radius: 1rem;
+    background: var(--bg-light);
+    box-shadow: var(--shadow-m);
+    margin-bottom: 3vh;
+
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+div.header-cell {
+    font: var(--h3);
+    color: var(--text);
+    text-align: center;
+    line-height: 100%;
+    padding: 1.25rem 0;
+    /* font-weight: 700; */
+    display: flex;
+}
+
+svg.arrows {
+    position: relative;
+    height: 2.5rem;
+    transform: translate(-20px, -8px);
+    cursor: pointer;
+}
+
+
+div.color-space {
+    /* position: absolute; */
+    height: 100%;
+    min-width: 10px;
+    max-width: 10px;
+}
+
+div.table-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+div.row {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: 3rem;
+    border-radius: .4rem;
+    overflow: hidden;
+
+    background-color: hsl(0, 0%, 13%);
+    box-shadow: var(--shadow-s);
+}
+
+div.body-cell {
+    font: var(--p);
+    color: var(--text);
+    padding: 0 1rem;
+    padding-top: .75rem;
+    font-weight: 400;
+}
+
+div.numeric {
+    font-family: var(--ff-mono);
+    text-align: right;
+}
+
+button.ready-button {
+    padding-right: .2rem;
+    overflow: hidden;
+    position: relative;
+    animation: transition-background-inv .4s ease-in-out;
+
+    margin-top: 8vh;
+}
+
+button.ready-button.ready {
+    animation: transition-background .4s ease-in-out;
+    background: linear-gradient(215deg, var(--primary) 0%, var(--secondary) 100%, var(--bg-light) 100%) padding-box,
+    var(--gradient) border-box;
+    border: solid 2px transparent;
+}
+
+div.ready-text {
+    position: relative;
+}
+
+div.signs {
+    position: absolute;
+    transform: translate(4.7vh, -2.55rem);
+    transition: var(--transition);
+}
+
+button.ready-button.ready div.signs {
+    transform: translate(4.7vh, -5.55rem);
+}
+
+/* EARTH SHII */
+
+.result-earth {
+    display: grid;
+    grid-template-columns: 3fr 5fr 3fr;
+    grid-template-rows: repeat(4, 1fr);
+    max-width: 95%;
+}
+
+div.player-container {
+    position: relative;
+    padding: 4vh 2vh;
+    background-color: var(--bg);
+    border-radius: 1vh;
+    box-shadow: var(--shadow-m);
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}

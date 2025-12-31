@@ -27,7 +27,7 @@ div.main div.container {
     clip-path: inset(0 round 3vh);
     padding: 2vh 4vh;
 
-    backdrop-filter: blur(0px) brightness(0.5);
+    backdrop-filter: blur(1px) brightness(0.5);
     border: 1px solid rgb(90, 90, 90);
 }
 
@@ -81,7 +81,7 @@ li {
     margin: 1vh 0;
 
     backdrop-filter: blur(3px);
-    background: rgba(0, 0, 0, .6);
+    background: rgba(0, 0, 0, 1.6);
     border: 1px solid rgb(90, 90, 90);
     position: relative;
 }

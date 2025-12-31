@@ -1,34 +1,23 @@
 import flask as f
 import src.routes.home.sql_friends as sql
 import src.tools.tools as tools
-import functools
 import json
+import flask_socketio as sio
 
 blueprint = f.Blueprint("home", __name__)
 
-def verify_conn(func):
-    @functools.wraps(func)
-    def wrapper(*args, **kwargs):
-        if "user_id" not in f.session:
-            f.session["last_url"] = f.request.url
-            return f.redirect("/auth/signin")
-        return func(*args, **kwargs)
-    
-    return wrapper
-
-
 @blueprint.route("/news")
-@verify_conn
-def home():
+@tools.verify_conn
+def home_news():
     news = []
     with open("logs/news.json", "r", encoding="utf-8") as news_json:
         news = json.load(news_json)
     
-    return f.render_template("home/news.html.j2", news_json = news)
+    return f.render_template("home/news.html.j2", news_json = news[::-1])
 
 
 @blueprint.route("/games")
-@verify_conn
+@tools.verify_conn
 def home_games():
     game_info_list = []
     with open("logs/games.json", "r", encoding="utf-8") as games_json:
@@ -37,27 +26,51 @@ def home_games():
     return f.render_template("home/games.html.j2", games=game_info_list)
 
 
+@blueprint.route("/games/create-new-room")
+@tools.verify_conn
+def home_games_create_room():
+    game_id = int(f.request.args.get("game-id"))
+    
+    room_ids_set = {int(key[5:]) for key in f.current_app.redis.scan_iter("room:*")}
+    print("room_ids_set ", room_ids_set)
+    possible_ids = set(n for n in range(0, len(room_ids_set) + 1))
+    print("possible_ids1 ", possible_ids)
+    
+        
+    possible_ids_list = list(possible_ids.difference(room_ids_set))
+    possible_ids_list.sort()
+    print("possible_ids_list ",possible_ids_list)
+    
+    
+    new_room_id = possible_ids_list[0]
+    new_room = {
+        "room_id": new_room_id,
+        "game_id": game_id,
+        "users": []
+    }
+    
+    room_id = tools.add_0s(new_room_id, 4)
+    
+    f.current_app.redis.set(f"room:{room_id}", json.dumps(new_room))
+    return f.jsonify({"room_id": room_id})
+
+
 @blueprint.route("/friends")
-@verify_conn
+@tools.verify_conn
 def home_friends():
     user_id = f.session.get("user_id")
     
     friend_list = sql.get_friends(user_id)
     request_list = sql.get_requests(user_id)
     
-    print(request_list)
-    
     for i in friend_list:
         i["id"] = int(i["id"])
 
     id_list = [li["id"] for li in friend_list]
-    status = []
-    
-    if len(id_list) != 0:
-        status = f.current_app.redis.smismember("connected_users", id_list)    
+    status_list = [f.current_app.redis.get(f"online_status:{uid}") for uid in id_list]
         
-    for i, s in zip(friend_list, status):
-        i.update({"status": "Online" if s else "Offline"})
+    for i, s in zip(friend_list, status_list):
+        i.update({"status": s})
 
     return f.render_template("home/friends.html.j2", requests=request_list, friends=friend_list)
 
@@ -112,9 +125,10 @@ def home_friends_accept_request():
 @blueprint.route("/my-account")
 def home_account():
     user_id = f.session.get("user_id")
-    return f.render_template("home/my_account.html.j2", user = tools.getUserData(user_id))
+    print(tools.get_user_data(user_id))
+    return f.render_template("home/my_account.html.j2", user = tools.get_user_data(user_id))
 
 @blueprint.route("/get-glsl")
-def get_glsl():
+def home_get_glsl():
     with open("assets/shaders/home_shader.frag", "r", encoding="utf-8") as glsl:
         return f.Response(status=200, response=glsl.read())

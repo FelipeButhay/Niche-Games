@@ -1,8 +1,10 @@
 import flask as f
 import os
+import src.tools.tools as tools
 
 def register_filters(app):
     
+    # takes an svg file and turns it to code that i can insert in html and removes all the styling
     @app.template_filter("get_svg")
     def get_svg(file_path):
         try:
@@ -28,9 +30,5 @@ def register_filters(app):
             return f"<!-- Invalid file path: {file_path} -->"
         
     @app.template_filter("format_id")
-    def format_id(id):
-        N = 4
-        n_dig = len(str(id))
-        str_0s = (N - n_dig) * "0"
-        
-        return f"#{str_0s}{id}"
+    def format_id(id, n):
+        return tools.add_0s(id, n)

@@ -66,6 +66,7 @@ void main() {
     col /= glow + 0.6;
     col = pow(col, vec3(0.9));
     
-    float t = clamp(time, 0., 1.);
+    // float t = clamp(time, 0., 1.);
+    float t = 1.;
     gl_FragColor = vec4(mix(vec3(0.), col, t), 1.);
 }

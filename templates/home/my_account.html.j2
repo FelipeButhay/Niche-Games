@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>NicheGames - News</title>
+        <title>NicheGames - My Account</title>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home/home.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home/myaccount/myaccount.css') }}">
@@ -15,7 +15,7 @@
             <div class="user-info">
                 <svg class="profile-pic"><use href="#myaccount-icon"></use></svg>
                 <span class="username golden-text">{{ user.username }}</span>
-                <span class="user-id">{{ user.id | format_id | safe}}</span>
+                <span class="user-id">{{ user.id | format_id(4) | safe}}</span>
             </div>
         </div>
   	</body>

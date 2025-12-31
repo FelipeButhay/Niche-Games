@@ -1,0 +1,15 @@
+div.title-card {
+    flex: 1;
+    display: flex;
+    /* align-items: center; */
+    flex-direction: column;
+    
+    padding: 4vh;
+    padding-top: 2vh;
+    padding-bottom: 3vh;
+
+    border-radius: 1vh;
+    background-color: var(--bg);
+    box-shadow: var(--shadow-l);
+    margin: 5vh;
+}

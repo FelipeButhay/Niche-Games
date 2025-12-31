@@ -23,7 +23,7 @@
     font-weight: bold;
     border-radius: 3vh;
 
-    padding: 4vh;
+    padding: 2vh 4vh;
 }
 
 .game-icon use {
@@ -53,5 +53,13 @@ span.title {
 }
 
 p {
-    font-size: 2vh;
+    font-size: 18px;
+    line-height: 24px;
 }
+
+/* button {
+    height: 5vh;
+    font-size: 3vh;
+    color: black;
+    border: solid 2px rgb(227, 158, 38);
+} */

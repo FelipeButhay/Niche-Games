@@ -67,22 +67,22 @@ addEventListener('resize', () => {
 //          DIALOG
 // -------------------------
 
-const dialog = document.querySelector("dialog.log-out");
-const close_modal_button = document.querySelector("dialog.log-out button#close-modal");
-close_modal_button.addEventListener("click", () => {
-    // material.uniforms.u_xtime.value = 1.;
-    // material.uniforms.u_time.value = Date.now() / 1000. - start_time;
+// const dialog = document.querySelector("dialog.log-out");
+// const close_modal_button = document.querySelector("dialog.log-out button#close-modal");
+// close_modal_button.addEventListener("click", () => {
+//     // material.uniforms.u_xtime.value = 1.;
+//     // material.uniforms.u_time.value = Date.now() / 1000. - start_time;
 
-    dialog.close();
-});
+//     dialog.close();
+// });
 
-const open_modal_button = document.querySelector("div.side-bar div#log-out");
-open_modal_button.addEventListener("click", () => {
-    // material.uniforms.u_xtime.value = .3;
-    // material.uniforms.u_time.value = Date.now() / 1000. - start_time;
+// const open_modal_button = document.querySelector("div.side-bar div#log-out");
+// open_modal_button.addEventListener("click", () => {
+//     // material.uniforms.u_xtime.value = .3;
+//     // material.uniforms.u_time.value = Date.now() / 1000. - start_time;
 
-    dialog.showModal();
-});
+//     dialog.showModal();
+// });
 
 // -------------------------
 //           NEWS
@@ -133,8 +133,8 @@ myaccount_div.addEventListener("click", () => {
 //         SOCKETS
 // -----------------------
 
-const online_status_socket = io("/online-status")
+const online_status_socket = io("/online-status");
 
-online_status_socket.on("connect", () => {
-    console.log("conecta3");
-});
+// online_status_socket.on("connect", () => {
+//     console.log("conecta3");
+// });

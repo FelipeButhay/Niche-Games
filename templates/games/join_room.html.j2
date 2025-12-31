@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Join Room - {{ room_id | format_id(4) | safe }} </title>
+        <meta charset="utf-8">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300..700&display=swap');
+            
+            body {
+                background-color: black;
+            }
+
+            span {
+                color: white;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 12vh;    
+                font-family: "Cormorant Garamond";
+                font-weight: 700;
+            }
+        </style>
+        <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    </head>
+
+    <body>
+        <span>Joining Room...</span>
+    </body>
+
+    <script>
+        const room_config = io("/room-config");
+        room_config.emit("join-room", {"room_id": {{ room_id }}}, (response) => {
+            window.location.href = response2.redirect;
+        });
+    </script>
+</html>
