@@ -44,12 +44,12 @@ function Slider({ defaultValue, min, max, unit }) {
 
         if (!sliding.current) return;
 
-        console.log(event.clientX);
-        console.log(div.offsetWidth);
+        // console.log(event.clientX);
+        // console.log(div.offsetWidth);
         
         let percentage = (event.clientX - div.getBoundingClientRect().left) / div.offsetWidth;
 
-        console.log(percentage);
+        // console.log(percentage);
 
         value.current = Math.round(lerp(min/10, max, percentage/10)) * 10;
         value.current = clamp(value.current, min, max);

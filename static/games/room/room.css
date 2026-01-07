@@ -38,8 +38,12 @@ div.main {
     padding: 3vh;
     gap: 3vh;
     flex-direction: row;
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
+}
+
+div.hidden {
+    display: none;
 }
 
 div.main div{
@@ -90,9 +94,10 @@ li span {
 /* === INFO === */
 
 div.room-info {
-    align-items: center;
+    position: relative;    
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 div.room-info button span {
@@ -101,12 +106,15 @@ div.room-info button span {
 
 div.room-info span.game-name {
     font-size: 8vh;
-    margin-bottom: 35vh;
+    text-align: center;
+    width: 100%;
 }
 
-div.room-info span.room-id {
-    font-size: 4vh;
-    color: white;
+div.room-info div.button-container {
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 div.room-info button {
@@ -138,7 +146,7 @@ svg.icon use{
 }
 
 /* === TEXTO DORADO ANIMADO === */
-.golden-text, button.unpressed:hover span {
+.golden-text, button:hover span {
     background: linear-gradient(
         120deg,
         #b8860b 0%,
@@ -176,26 +184,21 @@ svg.icon use{
 
 .icon use {
     stroke-width: 5;
-    stroke: white;
     fill: none;
     stroke-linecap: round;
     display: inline-block;
     transition: 0.3s ease;
+    stroke: white;
 }
 
-button.unpressed:hover .icon use {
+button:hover .icon use {
     transform: scale(1.2);
     stroke: url(#golden-gradient);
 }
 
-button.pressed {
-    background-color: rgb(50, 50, 50);
-    color: rgb(200, 200, 200);
-}
-
-button.pressed .icon use {
+/* button.pressed .icon use {
     stroke: rgb(200, 200, 200);
-}
+} */
 
 /* === SCROLL BAR ===*/
 
@@ -218,3 +221,4 @@ button.pressed .icon use {
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #fff1a6, #ffd700);
 }
+

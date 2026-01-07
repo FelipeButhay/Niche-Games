@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">
+    <style>
+        path, circle {
+            stroke: white;
+            fill-opacity: 0;
+            stroke-linecap: round;
+            stroke-width: 3.5;
+        }
+    </style>
+    <path id="teeth" transform="scale(1, -1)" 
+        d="M 0 45 L -5.77 44.63 L -6.79 34.14 L -11.32 33.2 L -17.32 41.54 L -22.5 38.97"/>
+    <use xlink:href="#teeth" transform="rotate(30)"></use>
+    <use xlink:href="#teeth" transform="rotate(60)"></use>
+    <use xlink:href="#teeth" transform="rotate(90)"></use>
+    <use xlink:href="#teeth" transform="rotate(120)"></use>
+    <use xlink:href="#teeth" transform="rotate(150)"></use>
+    <use xlink:href="#teeth" transform="rotate(180)"></use>
+    <use xlink:href="#teeth" transform="rotate(210)"></use>
+    <use xlink:href="#teeth" transform="rotate(240)"></use>
+    <use xlink:href="#teeth" transform="rotate(270)"></use>
+    <use xlink:href="#teeth" transform="rotate(300)"></use>
+    <use xlink:href="#teeth" transform="rotate(330)"></use>
+    <circle r="18"/>
+</svg>
+

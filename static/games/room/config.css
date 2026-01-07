@@ -1,0 +1,78 @@
+/* === CONFIG SCREEN === */
+
+div.configuration {
+    position: relative;
+    margin: 3vh;
+
+    border-radius: 3vh; 
+    clip-path: inset(0 round 3vh);
+
+    backdrop-filter: blur(1px) brightness(0.5);
+    padding: 4vh 4vh ;
+    padding-top: 13vh;
+    border: 1px solid rgb(90, 90, 90);
+}
+
+div.configuration span.config-title {
+    position: absolute;
+    top: 4vh;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 5vh;
+}
+
+div.configuration svg {
+    position: absolute;
+    cursor: pointer;
+    top: 7vh;
+    left: 4vh;
+    scale: 1.4;
+}
+
+div.configuration svg:hover use {
+    transform: scale(1.2);
+    stroke: url(#golden-gradient);
+}
+
+/* === COMPS === */
+
+div.slider-comp {
+    margin: 3vh 0;
+}
+
+span.comp-title {
+    font-size: 4vh;
+}
+
+p.comp-desc {
+    font-size: 2vh;
+}
+
+/* === SLIDER === */
+
+div.slider-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+div.slider {
+    width: 30vw;
+    height: 5vh;
+    font-size: 3vh;
+    text-align: center;
+    padding: 1vh;
+    border: 1px solid rgb(90, 90, 90);
+    background-color: black;
+
+    color: white;
+    display: inline-block;
+    margin: 2vh 0;
+    margin-right: 4vh;
+}
+
+span.slider-output {
+    font-size: 4vh;
+    color: white;
+    display: inline-block;
+}

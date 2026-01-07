@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='assets/logo.svg') }}">
         <title>{{ g.name }} - Room {{ room_id | format_id(4) | safe }}</title>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='games/room/room.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='games/room/config.css') }}">
         <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
     </head>
     <body>
@@ -11,33 +13,79 @@
             <div class="player-list">
                 <ul>
                     {% for u in users %}
-                        <li id="{{ u.user_id }}">
+                        <li id="id{{ u.user_id }}">
                             <span> {{ u.username }} </span>
                         </li>
                     {% endfor %}
                 </ul>
             </div>
+
             <div class="room-info">
                 <span class="game-name golden-text">{{ g.name }}</span>
-                <button class="copy">
-                    <svg class="icon">
-                        <use href="#copy-icon"></use>
-                    </svg>
-                    <span>Copy Invitation</span>
-                </button>
-                <button class="leave">
-                    <svg class="icon">
-                        <use href="#goback-icon"></use>
-                    </svg>
-                    <span>Leave Room</span>
-                </button>
-                <button class="start">
-                    <svg class="icon">
-                        <use href="#start-icon"></use>
-                    </svg>
-                    <span>Start Game</span>
-                </button>
+
+                <div class="button-container">
+                    {% if admin %}
+                        <button class="start">
+                            <svg class="icon">
+                                <use href="#start-icon"></use>
+                            </svg>
+                            <span>Start Game</span>
+                        </button>
+
+                        <button class="config">
+                            <svg class="icon">
+                                <use href="#config-icon"></use>
+                            </svg>
+                            <span>Configuration</span>
+                        </button>
+                    {% endif %}
+
+                    <button class="copy">
+                        <svg class="icon">
+                            <use href="#copy-icon"></use>
+                        </svg>
+                        <span>Copy Invitation</span>
+                    </button>
+
+                    <button class="leave">
+                        <svg class="icon">
+                            <use href="#goback-icon"></use>
+                        </svg>
+                        <span>Leave Room</span>
+                    </button>
+                </div>
             </div>
+        </div>
+        <div class="configuration hidden">          
+
+            <script>
+                window.config = {};
+
+                function goBackConfig() {
+                    if (window.admin) {
+                        document.querySelector("div.main").classList.toggle("hidden");
+                        document.querySelector("div.configuration").classList.toggle("hidden");
+                        document.querySelector("div.configuration div.config-comps").innerHTML = "<!-- Abz -->"
+
+                        fetch(`/room/save-config/${window.roomStrID}`, {
+                          method: "POST",
+                          headers: { "Content-Type": "application/json" },
+                          body: JSON.stringify(window.config)
+                        });
+
+                    } else {
+                        console.log("sorry, you're not sigma")
+                    }
+                }
+            </script>
+
+            <svg class="close-config icon" onclick="goBackConfig()">
+                <use href="#goback-icon"></use>
+            </svg>
+
+            <span class="config-title">Game Configuration</span>
+
+            <div class="config-comps"></div>
         </div>
     </body>
 
@@ -45,7 +93,16 @@
         window.roomID = {{ room_id }};
         window.gameID = {{ g.id }};
         window.gameName = "{{ g.name }}";
+        window.admin = {{ admin | tojson }};
+
+        function add0s(n, digits) {
+            const n_dig = n.toString().length;
+            const str_0s = "0".repeat(digits - n_dig);
+            return `${str_0s}${n}`;
+        }
+
+        window.roomStrID = add0s(window.roomID, 4);
     </script>
-    <script type="module" src="{{ url_for('static', filename='games/room/room.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='games/room/room.js') }}" defer></script>
     {% include "/home/svgs.html.j2"%}
 </html>

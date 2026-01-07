@@ -12,7 +12,8 @@ def register_filters(app):
                 base_name = os.path.basename(file_path).rsplit(".", 1)[0]
                 svg = file.read()
                 svg = svg.replace("<svg", f'<symbol id="{base_name}-icon" transform="translate(50, 50)"')\
-                         .replace("</svg>", "</symbol>")
+                         .replace("</svg>", "</symbol>")\
+                         .replace("\n", " ")
                 
                 svg_parts1 = svg.split("<style>")
                 

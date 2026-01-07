@@ -99,6 +99,7 @@ div.numeric {
 }
 
 button.ready-button {
+    cursor: pointer;
     padding-right: .2rem;
     overflow: hidden;
     position: relative;

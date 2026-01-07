@@ -1,7 +1,17 @@
 [
     {
         "name": "City shii",
+        "name_": "city_shii",
         "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
-        "id": 0
+        "id": 1,
+        "config": [
+            {
+                "title": "Spectr rounds",
+                "desc": "Time each player is going to be the spectr. For total rounds multiply this by the amount of players",
+                "type": "slider",
+                "specs": [1, 10, 1],
+                "default": 2
+            }
+        ]
     }
 ]

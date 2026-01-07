@@ -40,7 +40,7 @@ def user_exists(username: str, user_id: str):
     else:
         exit_code = friendsExitCodes.SUCCESS
         identifier = df.iloc[0]["id"]
-        print("identifier: ",identifier)
+        # print("identifier: ",identifier)
     
     c.close()
     conn.close()
@@ -64,7 +64,7 @@ def send_request(sender_id: str, receiver_id: str):
     exit_code = friendsExitCodes.UNKNOWN
     df = pd.DataFrame(c.fetchall(), columns=[desc[0] for desc in c.description])
     if df.empty:
-        print(sender_id, receiver_id)
+        # print(sender_id, receiver_id)
         c.execute("INSERT INTO friendships (sender_id, receiver_id) VALUES (?, ?)", (int(sender_id), int(receiver_id)))
         conn.commit()
         exit_code = friendsExitCodes.SUCCESS

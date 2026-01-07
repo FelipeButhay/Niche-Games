@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import StageWaiting from './stages/StageWaiting'
 import StagePlayerWaiting from './stages/StagePlayerWaiting';
 import StagePlayerEnterCity from './stages/StagePlayerEnterCity'
 import StageSpectrWaiting from './stages/StageSpectrWaiting';
@@ -10,15 +11,16 @@ import "./stages/css/common.css";
 
 const STAGE_ENUM = {
 	NULL: 0,
-	PLAYER_WAITING: 1,
-	PLAYER_ENTER_CITY: 2,
-	SPECTR_WAITING: 3,
-	SPECTR_ENTER_DIST: 4,
-	RESULTS: 5
+	WAITING: 1,
+	PLAYER_WAITING: 2,
+	PLAYER_ENTER_CITY: 3,
+	SPECTR_WAITING: 4,
+	SPECTR_ENTER_DIST: 5,
+	RESULTS: 6,
 }
 
 export default function App() {
-	const [screen, setScreen] = useState(STAGE_ENUM.PLAYER_ENTER_CITY);
+	const [screen, setScreen] = useState(STAGE_ENUM.WAITING);
 	const [round, setRound] = useState(0);
 	const playingCity = useRef({
 		name: "Jacksonville",
@@ -31,8 +33,9 @@ export default function App() {
 
   	return (
 		<>
+			{screen == STAGE_ENUM.WAITING 			&& (<StageWaiting/>)}
 			{screen == STAGE_ENUM.PLAYER_WAITING 	&& (<StagePlayerWaiting/>)}
-			{screen == STAGE_ENUM.PLAYER_ENTER_CITY 	&& (<StagePlayerEnterCity city={playingCity.current}/>)}
+			{screen == STAGE_ENUM.PLAYER_ENTER_CITY && (<StagePlayerEnterCity city={playingCity.current}/>)}
 			{screen == STAGE_ENUM.SPECTR_WAITING 	&& (<StageSpectrWaiting playerList={[
 				{
 				  "id": 1,

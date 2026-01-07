@@ -16,15 +16,16 @@ socket_io = sio.SocketIO(
     app, 
     async_mode='threading',
     ping_interval=60,
-    ping_timeout=180
+    ping_timeout=180,
 )
 
 app.redis = r
 
-from src.routes import home, auth, room
+from src.routes import home, auth, room, game
 app.register_blueprint(auth.blueprint, url_prefix="/auth")
 app.register_blueprint(home.blueprint, url_prefix="/home")
 app.register_blueprint(room.blueprint, url_prefix="/room")
+app.register_blueprint(game.blueprint, url_prefix="/game")
 
 from src.connections import online_status, room_config
 online_status   .OnlineStatusNamespace  (socket_io)

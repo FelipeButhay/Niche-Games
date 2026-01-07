@@ -32,21 +32,25 @@ def home_games_create_room():
     game_id = int(f.request.args.get("game-id"))
     
     room_ids_set = {int(key[5:]) for key in f.current_app.redis.scan_iter("room:*")}
-    print("room_ids_set ", room_ids_set)
+    # print("room_ids_set ", room_ids_set)
     possible_ids = set(n for n in range(0, len(room_ids_set) + 1))
-    print("possible_ids1 ", possible_ids)
+    # print("possible_ids1 ", possible_ids)
     
         
     possible_ids_list = list(possible_ids.difference(room_ids_set))
     possible_ids_list.sort()
-    print("possible_ids_list ",possible_ids_list)
+    # print("possible_ids_list ",possible_ids_list)
     
     
     new_room_id = possible_ids_list[0]
     new_room = {
         "room_id": new_room_id,
         "game_id": game_id,
-        "users": []
+        "users": [],
+        "admin": None,
+        "playing": False,
+        "config_data": {}, # another json with properties from the configuration in room
+        "game_data": {}    # another json with properties from the game itself
     }
     
     room_id = tools.add_0s(new_room_id, 4)
@@ -125,7 +129,7 @@ def home_friends_accept_request():
 @blueprint.route("/my-account")
 def home_account():
     user_id = f.session.get("user_id")
-    print(tools.get_user_data(user_id))
+    # print(tools.get_user_data(user_id))
     return f.render_template("home/my_account.html.j2", user = tools.get_user_data(user_id))
 
 @blueprint.route("/get-glsl")

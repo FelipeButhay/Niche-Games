@@ -1,16 +1,10 @@
-function add0s(n, digits) {
-    const n_dig = n.toString().length;
-    const str_0s = "0".repeat(digits - n_dig);
-    return `${str_0s}${n}`;
-}
-
 // -----------------------
 //         BUTTONS
 // -----------------------
 
 const copy_button = document.querySelector("div.room-info button.copy");
 copy_button.addEventListener("click", () => {
-    navigator.clipboard.writeText(`${window.location.origin}/room/join/${add0s(window.roomID, 4)}`);
+    navigator.clipboard.writeText(`${window.location.origin}/room/join/${window.roomStrID}`);
     const span = copy_button.querySelector("span");
     const original_text = span.textContent;
 
@@ -31,12 +25,29 @@ copy_button.addEventListener("click", () => {
 document.querySelector("div.room-info button.leave")
     .addEventListener("click", () => {
         window.location.href = "/home/games";
-});
+    });
 
+// config button
+document.querySelector("div.room-info button.config")
+    .addEventListener("click", () => {
+        if (window.admin) {
+            document.querySelector("div.main").classList.toggle("hidden");
+            document.querySelector("div.configuration").classList.toggle("hidden");
+        } else {
+            console.log("sorry, you're not sigma")
+        }
+    });
+
+// start button
 document.querySelector("div.room-info button.start")
     .addEventListener("click", () => {
-        console.log("todavia no anda, maestro")
-});
+        if (window.admin) {
+            room_socket.emit("start-game", {"room_id": window.roomID});
+
+        } else {
+            console.log("sorry, you're not sigma")
+        }
+    });
 
 // -----------------------
 //         SHADER
@@ -96,8 +107,8 @@ const room_socket = io("/room-config");
 room_socket.on("add-user", (data) => {
     console.log("add");
     
-    li_html = `
-    <li id="${data.user_id}">
+    let li_html = `
+    <li id="id${data.user_id}">
         <span>${data.username}</span>
     </li>`;
 
@@ -105,5 +116,54 @@ room_socket.on("add-user", (data) => {
 });
 
 room_socket.on("remove-user", (data) => {
-    document.querySelector(`ul li.${data.user_id}`).remove();
+    console.log("remove");
+
+    document.querySelector(`ul li#id${data.user_id}`).remove();
 });
+
+room_socket.on("start-game", (response) => {
+    window.location.href = response.redirect;
+});
+
+// --------------------------
+//         COMPONENTS
+// --------------------------
+
+function runScripts(element) {
+    element.querySelectorAll("script").forEach(oldScript => {
+        const newScript = document.createElement("script");
+        newScript.text = oldScript.textContent;
+        document.body.appendChild(newScript);
+        oldScript.remove();
+    });
+}
+
+fetch(`/room/get-config/${add0s(window.roomID, 4)}`)
+    .then(response => response.json())
+    .then(resp => {
+        const container = document.querySelector("div.configuration div.config-comps");
+        container.innerHTML += resp.html;
+        runScripts(container);
+    });
+
+/*
+function goBackConfig() {
+    console.log("a")
+    if (window.admin) {
+        document.querySelector("div.main").classList.toggle("hidden");
+        // document.querySelector("div.configuration").classList.toggle("hidden");
+    } else {
+        console.log("sorry, you're not sigma")
+    }
+}
+
+document.querySelector("div.configuration svg.close-config")
+    .addEventListener("click", () => {
+        if (window.admin) {
+            document.querySelector("div.main").classList.toggle("hidden");
+            document.querySelector("div.configuration").classList.toggle("hidden");
+        } else {
+            console.log("sorry, you're not sigma")
+        }
+    });
+*/

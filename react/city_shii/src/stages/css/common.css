@@ -65,8 +65,6 @@ span.subtitle {
 }
 
 button {
-    cursor: pointer;
-
     font: var(--h3);
     height: 3.6rem;
     border-radius: 1.8rem;
@@ -84,6 +82,10 @@ button {
     background: linear-gradient(var(--bg-light), var(--bg-light)) padding-box,
                 var(--gradient) border-box;
     border: solid 2px transparent;
+}
+
+button.send-butt.active {
+    cursor: pointer;
 }
 
 button.send-butt.active:hover {
@@ -220,8 +222,9 @@ span.chrono {
     font-family: monospace;
     font-size: 30px;
     background: radial-gradient(circle closest-side, var(--text) 94%,#0000) right/calc(200% - 1em) 100%;
-    animation: l24 1s infinite alternate linear;
+    animation: l24 1s infinite alternate ease-in-out;
 }
+
 .loader::before {
     content: "Loading...";
     line-height: 1em;
@@ -233,7 +236,8 @@ span.chrono {
 }
 
 @keyframes l24{
-    100%{background-position: left}
+      0%{background-position: 98%}
+    100%{background-position:  2%}
 }
 
 @keyframes gradient-flow {
