@@ -83,3 +83,9 @@ span.warning {
     color: var(--text);
     text-align: center;
 }
+
+span.select-city {
+    font: var(--p);
+    color: var(--text);
+    text-align: center;
+}

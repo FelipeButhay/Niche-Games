@@ -49,7 +49,7 @@ def home_games_create_room():
         "users": [],
         "admin": None,
         "playing": False,
-        "config_data": {}, # another json with properties from the configuration in room
+        "config_data": None, # another json with properties from the configuration in room
         "game_data": {}    # another json with properties from the game itself
     }
     

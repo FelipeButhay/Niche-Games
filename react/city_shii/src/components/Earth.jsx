@@ -130,6 +130,7 @@ function LoaderFallback() {
 export default function Earth({ pinList, size, camSpeed, rotSpeed, fixed }) {
 	const gltf = useGLTF("/models/earth.glb");
 
+	/*
   	return (
     	<div className="earth-container"
 			style={{ 
@@ -158,7 +159,7 @@ export default function Earth({ pinList, size, camSpeed, rotSpeed, fixed }) {
 					position={[-500, 0, 0]} 
 					intensity={2.}
 				/>
-				{/* <Sun/> */}
+				{// <Sun/>}
         		<OrbitControls enableZoom={false} enablePan={false} target={[0, 0, 0]} rotateSpeed={camSpeed}/>
 				
 				<Suspense fallback={<LoaderFallback/>}>
@@ -187,9 +188,36 @@ export default function Earth({ pinList, size, camSpeed, rotSpeed, fixed }) {
 				</Suspense>
 
 
-				{/* <axesHelper args={[100]}/> */}
-				{/* <PinModel colorID={1} lat={40.366656} lon={-49.835183}/> */}
+				{// <axesHelper args={[100]}/>}
+				{// <PinModel colorID={1} lat={40.366656} lon={-49.835183}/>}
       		</Canvas>
     	</div>
-  	);
+  	); */
+
+	return (    	
+		<div className="earth-container"
+			style={{ 
+        		width: size, 
+        		height: size, 
+        		overflow: "hidden",
+        		position: "relative", 
+				zIndex: 0
+			}}>
+      		<div 
+				style={{
+      				// position: "absolute",
+      				top: 0,
+      				left: fixed ? "25%" : "0",
+					width: "100%", 
+        			height: size, 
+					overflow: "hidden",
+    				transform: fixed ? "translateY(5vh)" : "translateY(0)",
+					// position: "relative",
+    				position: fixed ? "fixed" : "relative",
+					backgroundColor: "#151956",
+      			}}>
+				
+			</div>
+		</div>
+		);
 }

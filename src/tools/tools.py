@@ -31,20 +31,6 @@ def verify_conn_room(func):
     return wrapper
 
 
-# suscribes to all the room:ID and send the new room to all members
-# NO USADA POR EL MOMENTO
-def redis_suscribe():
-    pubsub = f.current_app.redis.pubsub()
-    pubsub.psuscribe("__keyspace@0__:room:*")
-    
-    for event in pubsub.listen():
-        if event["type"] == "pmessage" and str(event["data"].decode()) == "set":
-            room_id = str(event["channel"].decode()).split(":")[-1]
-            room = get_room(room_id)
-            
-            sio.emit("meessage", room, to=room_id)
-
-
 # get the all the user information from the main "user" sql table
 def get_user_data(user_id: int) -> dict:
     conn = sql.connect("databases/users.db")
@@ -71,7 +57,7 @@ def get_user_data(user_id: int) -> dict:
 
 def get_room(room_id: int):
     room_redis = f.current_app.redis.get(f"room:{tools.add_0s(int(room_id), 4)}")
-    return json.loads(room_redis)
+    return json.loads(room_redis) if room_redis != None else None
 
 
 # set a room info

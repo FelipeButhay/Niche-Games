@@ -38,5 +38,6 @@ export default function Chrono({initSec, reverse, target, func}) {
         return `${String(minutos).padStart(2, "0")}:${String(segundos).padStart(2, "0")}`;
     };
 
-    return formatearTiempo(segundos);
+    return <></>;
+    // return formatearTiempo(segundos);
 }

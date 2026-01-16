@@ -50,7 +50,7 @@ def get_config(room_id):
                 default = None
                 
                 try:
-                    default = config_data[c["title"]]
+                    default = config_data[c["title_"]]
                 except:
                     pass
                 
@@ -59,7 +59,7 @@ def get_config(room_id):
                     max     = c["specs"][1],
                     intv    = c["specs"][2],
                     title   = c["title"],
-                    title_  = c["title"].replace(" ", "_"),
+                    title_  = c["title_"],
                     desc    = c["desc"],
                     default = c["default"] if default == None else default
                 ))
@@ -82,6 +82,8 @@ def save_config(room_id):
     room["config_data"] = new_config_data
     
     tools.set_room(room_id, room)
+    
+    return f.Response(status=200)
 
     
 @blueprint.route("/get-glsl")

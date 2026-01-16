@@ -28,25 +28,16 @@ document.querySelector("div.room-info button.leave")
     });
 
 // config button
-document.querySelector("div.room-info button.config")
+if (window.admin) document.querySelector("div.room-info button.config")
     .addEventListener("click", () => {
-        if (window.admin) {
-            document.querySelector("div.main").classList.toggle("hidden");
-            document.querySelector("div.configuration").classList.toggle("hidden");
-        } else {
-            console.log("sorry, you're not sigma")
-        }
+        document.querySelector("div.main").classList.toggle("hidden");
+        document.querySelector("div.configuration").classList.toggle("hidden");
     });
 
 // start button
-document.querySelector("div.room-info button.start")
+if (window.admin) document.querySelector("div.room-info button.start")
     .addEventListener("click", () => {
-        if (window.admin) {
-            room_socket.emit("start-game", {"room_id": window.roomID});
-
-        } else {
-            console.log("sorry, you're not sigma")
-        }
+        room_socket.emit("start-game", {"room_id": window.roomID});
     });
 
 // -----------------------
@@ -121,7 +112,8 @@ room_socket.on("remove-user", (data) => {
     document.querySelector(`ul li#id${data.user_id}`).remove();
 });
 
-room_socket.on("start-game", (response) => {
+room_socket.on("game-redirect", (response) => {
+    console.log("aloha")
     window.location.href = response.redirect;
 });
 
@@ -146,8 +138,7 @@ fetch(`/room/get-config/${add0s(window.roomID, 4)}`)
         runScripts(container);
     });
 
-/*
-function goBackConfig() {
+/* function goBackConfig() {
     console.log("a")
     if (window.admin) {
         document.querySelector("div.main").classList.toggle("hidden");

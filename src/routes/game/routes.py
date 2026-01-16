@@ -4,10 +4,11 @@ import flask_socketio as sio
 
 blueprint = f.Blueprint("game", __name__)
 
-@blueprint.route("/<string:game_id>-<string:room_id>")
+@blueprint.route("/<string:room_id>")
 @tools.verify_conn
-def game(game_id, room_id):
-    game_id, room_id = int(game_id), int(room_id)
+def game(room_id):
+    print("REDIRECT TO REACT")
+    room_id = int(room_id)
+    user_id = f.session["user_id"]
     
-    game_data = tools.get_game(game_id)
-    return f.redirect("http://localhost:5173", code=302)
+    return f.redirect(f"http://localhost:5173/?room_id={room_id}&user_id={user_id}", code=302)

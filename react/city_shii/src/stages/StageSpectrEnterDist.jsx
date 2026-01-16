@@ -3,15 +3,14 @@ import Chrono from '../components/Chrono';
 import Earth from '../components/Earth';
 import './css/StageSpecterEnterDist.css';
 import { clamp, lerp } from 'three/src/math/MathUtils.js';
+import socket from '../sockets';
 
 function antiLerp(a, b, c) {
     return (c - a) / (b - a);
 }
 
-function Slider({ defaultValue, min, max, unit }) {
+function Slider({ value, min, max, unit }) {
     const sliding = useRef(false);
-    const value = useRef(defaultValue);
-    
     
     function updateSlider(percentage) {
         const div = document.querySelector("div.slider");
@@ -39,7 +38,7 @@ function Slider({ defaultValue, min, max, unit }) {
         text.style.color = 'transparent';
     }
     
-    const sliderHandler = (event) => {
+    function sliderHandler(event) {
         const div = document.querySelector("div.slider");
 
         if (!sliding.current) return;
@@ -55,7 +54,7 @@ function Slider({ defaultValue, min, max, unit }) {
         value.current = clamp(value.current, min, max);
 
         updateSlider(percentage)
-    };
+    }
 
     useEffect(() => {
         const handleKeyUp = (event) => {
@@ -95,7 +94,13 @@ function Slider({ defaultValue, min, max, unit }) {
     )
 }
 
-export default function StageSpectrEnterDist({round, city}) {
+export default function StageSpectrEnterDist({round, city, roomId}) {
+    const sliderValue = useRef(city["distance"]);
+
+    function sendHandler() {
+        socket.emit("send-dist", {dist: sliderValue.current, room_id: roomId});
+    }
+
     return (
         <div className='background'>
             <div className='main-card'>
@@ -104,14 +109,14 @@ export default function StageSpectrEnterDist({round, city}) {
                 <div className="round-time">
                     <span style={{flex: 1}} className='sub-subtitle'>Round {round || "-"} </span>
                     <span style={{flex: 1}} className='sub-subtitle chrono'>
-                        <Chrono  initSec={120} reverse={true} target={0}/>
+                        <Chrono initSec={0} reverse={false} target={-1} func={() => {}}/>
                     </span>
                 </div>
                 {/* <span className='sub-subtitle'>Round {round || "n"}</span> */}
                 <span></span>
                 { /* min: 10km max: 20000km */ }
-                <Slider defaultValue={10000} min={10} max={20000} unit="km"/>
-                <button className='send-butt active'>Send</button>
+                <Slider value={sliderValue} min={10} max={20000} unit="km"/>
+                <button className='send-butt active' onClick={sendHandler}>Send</button>
             </div>
             <Earth
                 size={"90vh"}

@@ -15,6 +15,7 @@ r = redis.Redis(host='localhost', port=6379, db=0)
 socket_io = sio.SocketIO(
     app, 
     async_mode='threading',
+    cors_allowed_origins="*",
     ping_interval=60,
     ping_timeout=180,
 )
@@ -31,6 +32,10 @@ from src.connections import online_status, room_config
 online_status   .OnlineStatusNamespace  (socket_io)
 room_config     .RoomConfigNamespace    (socket_io)
 
+# import city shii conns
+from src.connections.game_conn.city_shii_conn import CityShiiNamespace
+CityShiiNamespace(socket_io)
+
 from src.tools import jinja_filters as j2filt
 j2filt.register_filters(app)
 
@@ -40,7 +45,7 @@ def main():
         return f.redirect("/auth/signin")
     else:
         return f.redirect(f.session.get("last_url", "/home/news"))
-
+ 
 DEBUG = bool(os.getenv("DEBUG"))
 
 if __name__ == "__main__":
@@ -48,4 +53,4 @@ if __name__ == "__main__":
     for k in r.scan_iter("room:*"):
         r.delete(k)
     
-    socket_io.run(app, host="0.0.0.0", port=5000, debug=DEBUG)
+    socket_io.run(app, host="0.0.0.0", port=5000, debug=DEBUG, use_reloader=False)

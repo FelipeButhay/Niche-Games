@@ -1,4 +1,5 @@
 export default function StageWaiting() {
+
     return (
         <div
             style={{

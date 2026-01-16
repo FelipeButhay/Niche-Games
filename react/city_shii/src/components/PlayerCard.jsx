@@ -4,7 +4,7 @@ export default function PlayerCard({player, showReady}) {
     player.spectr ? 
     "/svgs/spectr.svg" : 
 
-    player.ready ? 
+    player.ready1 ? 
     "/svgs/ready.svg" : 
     "/svgs/not_ready.svg"; 
 

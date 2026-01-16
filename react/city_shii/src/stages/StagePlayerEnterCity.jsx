@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Chrono from '../components/Chrono';
 import Earth from '../components/Earth';
 import './css/StagePlayerEnterCity.css';
 import { randInt } from 'three/src/math/MathUtils.js';
+import socket from '../sockets';
 
 const placeHolders = [
     "City McCity",
@@ -16,14 +17,16 @@ const placeHolders = [
     "Tero Violado",
     "Epstein Island",
     "Marte",
-]
+    "Lanus Oeste"
+];
 
-export default function StagePlayerEnterCity({ round, city}) {
-    const [cityList, setCityList] = useState([
+export default function StagePlayerEnterCity({ round, userId, city}) {
+    const [cityList, setCityList] = useState([]);
+    /* [
         {name: "Charleville",          pop:  3515, cc: "AU"},
         {name: "Charleville-Mézières", pop: 52415, cc: "FR"},
         {name: "Charleville",          pop:  3919, cc: "IE"},
-    ]);
+    ] */
     const [citySelectedId, setCitySelectedId] = useState(null);
 
     function handleSelectCity(id) {
@@ -33,6 +36,19 @@ export default function StagePlayerEnterCity({ round, city}) {
             setCitySelectedId(id);
         }
         console.log(citySelectedId);
+    }
+    
+    function handleSubmit(e) {
+        e.preventDefault();
+        const inputText = e.target.querySelector("input");
+        socket.emit("get-cities", {city: inputText.value, user_id: userId}, (response) => {
+            setCityList(response);
+        });
+        inputText.value = "";
+    }
+
+    function handleSend() {
+        socket.emit("send-city", {city_id: citySelectedId, user_id: userId, roomId: roomId});
     }
 
     return (
@@ -51,28 +67,34 @@ export default function StagePlayerEnterCity({ round, city}) {
                             <Chrono  initSec={120} reverse={true} target={0} func={() => {}}/>
                         </span>
                     </div>
-                    {/* <span className='sub-subtitle'>Round {round || "n"}</span> */}
-                    <input type="text" placeholder={placeHolders[randInt(0, placeHolders.length)]}></input>
+                    <form onSubmit={handleSubmit}>
+                        <input type="text" 
+                            placeholder={placeHolders[randInt(0, placeHolders.length)]}
+                        ></input>
+                    </form>
 
                     <div className='city-container'>
                         {
                             cityList.length > 0 ?
-                            cityList.map((city, i) => {
+                            cityList.map((city) => {
                                 return (
-                                    <div id={`city${i}`} key={i} onClick={() => handleSelectCity(i)}
-                                        className={'city-card ' + (citySelectedId == i ? "selected" : "not-selected")} >
+                                    <div id={`id-${city.id}`} key={city.id} onClick={() => handleSelectCity(city.id)}
+                                        className={'city-card ' + (citySelectedId == city.id ? "selected" : "not-selected")} >
 
-                                        <span className="city-name">{"[" + (city.cc || "cc") + "]"} {city.name || `CITY - ${i}`}</span>
+                                        <span className="city-name">
+                                            {"[" + (city.cc || "cc") + "]"} {city.name || `CITY - ${city.id}`}
+                                        </span>
                                         <span className="city-pop">{city.pop || "unknown"} inhab.</span>
 
                                     </div>
                                 ) 
-                            }) : (<span className=''>Select a City</span>)
+                            }) : (<span className='select-city'>Select a City</span>)
                         }
 
                         { cityList.length > 0 && (<span className='warning'>Select a city from above.</span>) }
 
-                        <button className={'send-butt ' + (citySelectedId != null && "active")} 
+                        <button className={'send-butt ' + (citySelectedId != null && "active")}
+                            onClick={handleSend}
                             style={{
                                 marginTop: "4vh",
                                 position: "relative", 
