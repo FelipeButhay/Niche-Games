@@ -20,7 +20,7 @@ const placeHolders = [
     "Lanus Oeste"
 ];
 
-export default function StagePlayerEnterCity({ round, userId, city}) {
+export default function StagePlayerEnterCity({ round, userId, roomId, city}) {
     const [cityList, setCityList] = useState([]);
     /* [
         {name: "Charleville",          pop:  3515, cc: "AU"},
@@ -48,7 +48,7 @@ export default function StagePlayerEnterCity({ round, userId, city}) {
     }
 
     function handleSend() {
-        socket.emit("send-city", {city_id: citySelectedId, user_id: userId, roomId: roomId});
+        socket.emit("send-city", {city_id: citySelectedId, user_id: userId, room_id: roomId});
     }
 
     return (
@@ -57,9 +57,9 @@ export default function StagePlayerEnterCity({ round, userId, city}) {
                 <div className='main-card'>
                     <div className='title-div'>
                         <span style={{display: "inline"}} className='title'>Choose a city </span> 
-                        <span style={{display: "inline"}} className='title-special'>{city["distance"]}km</span>
+                        <span style={{display: "inline"}} className='title-special'>{city.distance}km</span>
                         <span style={{display: "inline"}} className='title'> apart from </span> 
-                        <span style={{display: "inline"}} className='title-special'>{city["name"]}</span>
+                        <span style={{display: "inline"}} className='title-special'>{city.name}</span>
                     </div>
                     <div className="round-time">
                         <span style={{flex: 1}} className='sub-subtitle'>Round {round || "-"} </span>

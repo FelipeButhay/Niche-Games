@@ -5,6 +5,8 @@ import random as rand
 import src.tools.tools as tools
 from enum import IntEnum
 import os
+import geopy
+from geopy.distance import geodesic
 
 class Screens(IntEnum):
     NULL = 0
@@ -79,10 +81,12 @@ def get_city_id(city_id):
         password=POSTGRE_PASSWORD,
         host="localhost"
     )
-    cur = conn.cursor(cursor_factory=pg.extras.DictCursor)
+    cur = conn.cursor()
 
     cur.execute("""
-        SELECT id, name, lat, lon, cc, pop FROM ciudades WHERE id == %s;
+        SELECT id, name, lat, lon, cc, pop 
+        FROM cities 
+        WHERE id = %s;
     """, (city_id,)) 
 
     results = cur.fetchall()
@@ -97,3 +101,11 @@ def get_city_id(city_id):
         "cc":   results[0][4],
         "pop":  results[0][5]
     }
+    
+def get_delta_d(c1: tuple, c2: tuple) -> float:
+    return geodesic(c1, c2).kilometers
+
+def get_points(d: float, d1: float) -> float:
+    dp = (d1/d - 1)*100
+    exp = int(abs(dp))/10
+    return 1000 * 0.8 ** exp

@@ -14,7 +14,7 @@ import redis
 r = redis.Redis(host='localhost', port=6379, db=0) 
 socket_io = sio.SocketIO(
     app, 
-    async_mode='threading',
+    async_mode='eventlet',
     cors_allowed_origins="*",
     ping_interval=60,
     ping_timeout=180,
@@ -48,9 +48,11 @@ def main():
  
 DEBUG = bool(os.getenv("DEBUG"))
 
-if __name__ == "__main__":
-    # clears evety room
+def clear_rooms():
+    """Elimina rooms al iniciar."""
     for k in r.scan_iter("room:*"):
         r.delete(k)
-    
+
+if __name__ == "__main__":
+    clear_rooms()
     socket_io.run(app, host="0.0.0.0", port=5000, debug=DEBUG, use_reloader=False)

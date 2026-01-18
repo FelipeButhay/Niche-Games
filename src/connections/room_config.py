@@ -65,25 +65,23 @@ class RoomConfigNamespace:
             room_id = self.user_rooms[user_id]["room_id"]
             room = tools.get_room(room_id)
             
-            if room["playing"]:
-                return
-            
             if room_id == None:
                 return
             
-            self.socket_io.emit("remove-user", 
-                {"user_id": user_id}, 
-                namespace=self.namespace, 
-                to=room_id
-            )
             sio.leave_room(room_id, sid=request.sid, namespace=self.namespace)
-            room["users"].remove(user_id)
             
-            if len(room["users"]) == 0:
-                tools.delete_room(room_id)
-            
-            tools.set_room(room_id, room)
-            
+            if not room["playing"]: 
+                if len(room["users"]) == 0:
+                    tools.delete_room(room_id)
+                    
+                self.socket_io.emit("remove-user", 
+                    {"user_id": user_id}, 
+                    namespace=self.namespace, 
+                    to=room_id
+                )
+                room["users"].remove(user_id)
+                tools.set_room(room_id, room)
+                
             
         @self.socket_io.on("start-game", namespace=self.namespace)
         def on_start_game(data):      

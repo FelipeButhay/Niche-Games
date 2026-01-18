@@ -16,6 +16,10 @@ function add0s(n, digits) {
 	return `${str_0s}${n}`;
 }
 
+function sleep(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 const SCREENS = {
 	NULL: 0,
 	WAITING: 1,
@@ -28,7 +32,7 @@ const SCREENS = {
 
 export default function App() {
 	const [screen, setScreen] = useState(SCREENS.WAITING);
-	const [round, setRound] = useState(0);
+	const [round, setRound] = useState(1);
 	const playingCity = useRef({
 		name: "Jacksonville",
 		color_id: 1, 
@@ -39,6 +43,7 @@ export default function App() {
 
 	const [ userId,  setUserId] = useState(undefined);
 	const [ roomId,  setRoomId] = useState(undefined);
+	const [ gameId,  setGameId] = useState(undefined);
 	const [colorId, setColorId] = useState(undefined);
 	const [  admin,   setAdmin] = useState(false);
 
@@ -46,11 +51,13 @@ export default function App() {
 	
 	useEffect(() => {
 		const params = new URLSearchParams(window.location.search);
-		const room_id = Number(params.get("room_id"));
 		const user_id = Number(params.get("user_id"));
+		const room_id = Number(params.get("room_id"));
+		const game_id = Number(params.get("game_id"));
 
 		setRoomId(room_id);
 		setUserId(user_id);
+		setGameId(game_id);
 	}, []);
 
 	useEffect(() => {
@@ -68,6 +75,27 @@ export default function App() {
 			}
 		);
 
+		async function getGameData() {
+			let repeat = true;
+			while (repeat) {
+				socket.emit(
+					"get-game-innit", 
+					{ room_id: roomId },
+					(response) => {
+						console.log(response)
+						if (response.status == "run") {
+							handleNextRound(response);
+							repeat = false;
+						}
+					}
+				);
+
+				await sleep(300);
+			}
+		}
+
+		getGameData();
+
 		// socket ons
 
 		const handleSetScreen = (data) => {
@@ -75,23 +103,34 @@ export default function App() {
 		};
 
 		const handleNextRound = (data) => {
+			console.log(data);
+			if (data.is_end) {
+				window.location.href = `127.0.0.1:5000/room/${gameId}-${roomId}`
+			} 
+
 			spectr.current = data.spectr === userId;
 			setScreen(data[spectr.current ? "screen_spectr" : "screen"]);
-			setRound((r) => r + 1);
+			setRound(data["round"]);
 			playingCity.current = { ...data.playing_city, spectr: true };
 		};
 
+		const handleSetDist = (data) => {
+			playingCity.current.distance = data.dist;
+		}
+
 		socket.on("set-screen", handleSetScreen);
 		socket.on("next-round", handleNextRound);
-
+		socket.on("set-dist", handleSetDist);
+		
 		return () => {
 			socket.off("set-screen", handleSetScreen);
 			socket.off("next-round", handleNextRound);
+			socket.off("set-dist", handleSetDist);
 		};
 
-		}, [userId, roomId]);
+	}, [userId, roomId]);
 
-		useEffect(() => {
+	useEffect(() => {
 			if (admin) {	
 				socket.emit(
 					"game-innit", 
@@ -126,19 +165,25 @@ export default function App() {
 				<StagePlayerEnterCity	
 					round={round} 
 					city={playingCity.current}
+					roomId={roomId}
+					userId={userId}
 				/>
 			)}
 			{screen == SCREENS.SPECTR_WAITING 	&& (
 				<StageSpectrWaiting 	
 					round={round} 
 					playerList={[]}
+					roomId={roomId}
 				/>
 			)}
 
 
 			{screen == SCREENS.RESULTS			&& (
-				<StageResults			
-					round={round} 
+				<StageResults
+					city={playingCity.current}
+					round={round}
+					roomId={roomId}
+					userId={userId}
 				/>
 			)}
 		</>

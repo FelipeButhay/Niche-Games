@@ -11,6 +11,7 @@ export default function StageSpectrWaiting({round, roomId}) {
     
     useEffect(() => {
         socket.emit("get-player-list", {room_id: roomId}, (data) => {
+            console.log(data["player_list"])
             setPlayerList(data["player_list"]);
         });
     }, []);
@@ -23,17 +24,20 @@ export default function StageSpectrWaiting({round, roomId}) {
                     <div className="round-time">
                         <span style={{flex: 1}} className='sub-subtitle'>Round {round || "-"} </span>
                         <span style={{flex: 1}} className='sub-subtitle chrono'>
-                            <Chrono  initSec={120} reverse={true} target={0}/>
+                            <Chrono  initSec={120} reverse={true} target={0} func={() => {}}/>
                         </span>
                     </div>
                 </div>
                 <div className="main-card player-container">
                     {
-                        playerList != undefined && playerList.values().map((player, i) => {
+                        Object.values(playerList).length == 0 ? 
+                        (
+                            <div className="loader"></div>
+                        ) : Object.values(playerList).map((player, i) => {
                             return <PlayerCard player={player} key={i} showReady={true}/>
                         })
                     }
-                    { playerList.length == 0 && (<div className="loader"></div>) }
+                    {/* { playerList.values.length == 0 && (<div className="loader"></div>) } */}
                 </div>
             </div>
             
@@ -43,8 +47,7 @@ export default function StageSpectrWaiting({round, roomId}) {
                 camSpeed={0.5}
                 rotSpeed={3.}
                 pinList={
-                    !playerList ? [] :
-                    playerList.map((player) => {
+                    Object.values(playerList).map((player) => {
                         return {
                             color_id: player["color_id"], 
 							lat: player["lat"],

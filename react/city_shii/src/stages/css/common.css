@@ -4,6 +4,10 @@
     padding: 0;
 }
 
+body {
+    background-color: var(--bg-dark);
+}
+
 /* html, body {
     height: 100%;
     margin: 0;

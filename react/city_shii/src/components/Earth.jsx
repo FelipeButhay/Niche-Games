@@ -85,7 +85,7 @@ function EarthModel({ nodes, materials, rotSpeedMult }) {
   	);
 }
 
-// useGLTF.preload("/models/earth.glb");
+useGLTF.preload("/models/earth.glb");
 
 function Sun() { 
 	// kinda deprecated 
@@ -130,8 +130,17 @@ function LoaderFallback() {
 export default function Earth({ pinList, size, camSpeed, rotSpeed, fixed }) {
 	const gltf = useGLTF("/models/earth.glb");
 
-	/*
-  	return (
+	useEffect(() => {
+		return () => {
+    		if (window.__earthRenderer) {
+				window.__earthRenderer.dispose();
+				window.__earthRenderer.forceContextLoss();
+				window.__earthRenderer = null;
+    		}
+  		};
+	}, []);
+
+  	/* return (
     	<div className="earth-container"
 			style={{ 
         		width: size, 
@@ -141,6 +150,10 @@ export default function Earth({ pinList, size, camSpeed, rotSpeed, fixed }) {
 				zIndex: 0
 			}}>
       		<Canvas 
+			  	onCreated={({ gl }) => {
+					window.__earthRenderer = gl;
+  				}}
+
 				style={{
       				// position: "absolute",
       				top: 0,
@@ -159,7 +172,6 @@ export default function Earth({ pinList, size, camSpeed, rotSpeed, fixed }) {
 					position={[-500, 0, 0]} 
 					intensity={2.}
 				/>
-				{// <Sun/>}
         		<OrbitControls enableZoom={false} enablePan={false} target={[0, 0, 0]} rotateSpeed={camSpeed}/>
 				
 				<Suspense fallback={<LoaderFallback/>}>
@@ -186,15 +198,11 @@ export default function Earth({ pinList, size, camSpeed, rotSpeed, fixed }) {
 						})
 					}
 				</Suspense>
-
-
-				{// <axesHelper args={[100]}/>}
-				{// <PinModel colorID={1} lat={40.366656} lon={-49.835183}/>}
       		</Canvas>
     	</div>
-  	); */
+  	);
 
-	return (    	
+	*/return (    	
 		<div className="earth-container"
 			style={{ 
         		width: size, 
